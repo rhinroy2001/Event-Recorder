@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'labInspectionMain.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,9 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
         onSelected: (value) {
           if (value == 1) {
-            // do something
+            labInspection(); // there is no back button or submit
           } else if (value == 2) {
-            // do something
+            Text('OSHA Form');
           }
         },
         offset: const Offset(0, -200),
