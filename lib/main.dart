@@ -72,13 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
           //]
         ),
         body: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+               mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    //mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text('Previously Completed Forms',
                           style: TextStyle(fontSize: 25)),
@@ -155,11 +155,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 var mailTo = mailToController.text;
                                 var subject = subjectController.text;
                                 var body = emailBodyController.text;
-                                Uri url = Uri.parse(
-                                    'mailto:$mailTo?subject=$subject&body=$body');
-                                // Launch the URL
-                                if (!await launchUrl(url)) {
-                                  throw 'Could not launch $url';
+                                if(mailTo.isNotEmpty && subject.isNotEmpty && body.isNotEmpty) {
+                                  Uri url = Uri.parse(
+                                      'mailto:$mailTo?subject=$subject&body=$body');
+                                  // Launch the URL
+                                  if (!await launchUrl(url)) {
+                                    throw 'Could not launch $url';
+                                  }
+                                }else{
+                                  showDialog(context: context, builder: (ctx) => AlertDialog(
+                                    title: const Text('Error'),
+                                    content: const Text('All text fields must contain text'),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: (){
+                                          Navigator.of(ctx).pop();
+                                        },
+                                        child: Container(
+                                          color: Colors.blue,
+                                          padding: const EdgeInsets.all(15),
+                                          child: const Text('okay', style: TextStyle(color: Colors.white)),
+                                        )
+                                      )
+                                    ],
+                                  ));
                                 }
                               },
                               child: const Text('Send Email',
