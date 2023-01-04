@@ -198,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(fontSize: 25)),
                     ElevatedButton(
                       onPressed: () {
-                        // Do something when the button is pressed
+                        labInspection();
                       },
                       child: const Text('Lab Safety Inspection Form',
                           style: TextStyle(fontSize: 20)),
