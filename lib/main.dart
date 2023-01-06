@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'labInspectionMain.dart';
+import 'labInspectionForm/lif_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,39 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          // actions:
-          //[
-          // PopupMenuButton<int>(
-          //   itemBuilder: ((context) => [
-          //         PopupMenuItem(
-          //             value: 1,
-          //             child: Row(
-          //               children: const [
-          //                 Icon(Icons.star),
-          //                 SizedBox(width: 10),
-          //                 Text('Lab Inspection Form'),
-          //               ],
-          //             )),
-          //         PopupMenuItem(
-          //             value: 2,
-          //             child: Row(children: const [
-          //               Icon(Icons.star),
-          //               SizedBox(
-          //                 width: 10,
-          //               ),
-          //               Text('OSHA Form')
-          //             ])),
-          //       ]),
-          //   onSelected: (value) {
-          //     if (value == 1) {
-          //       // do something
-          //     } else if (value == 2) {
-          //       // do something
-          //     }
-          //   },
-          //   offset: const Offset(0, -200),
-          // )
-          //]
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Row(
@@ -79,13 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Column(
                 //mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Previously Completed Forms',
+                  const Text('Previously Completed Forms',
                       style: TextStyle(fontSize: 25)),
                   TextButton(
                       onPressed: () {
                         // do something here
                       },
-                      child: Text('this will be the name of a form',
+                      child: const Text('this will be the name of a form',
                           style: TextStyle(fontSize: 20)))
                 ],
               ),
@@ -93,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,14 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(fontSize: 25),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 16),
                           child: SizedBox(
                             height: 60,
                             width: 300,
                             child: TextField(
                               controller: mailToController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
                                 labelText: 'Mail to',
                               ),
@@ -118,14 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 16),
                           child: SizedBox(
                             height: 60,
                             width: 300,
                             child: TextField(
                               controller: subjectController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
                                 labelText: 'Subject',
                               ),
@@ -133,14 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 16),
                           child: SizedBox(
                             height: 60,
                             width: 300,
                             child: TextField(
                               controller: emailBodyController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
                                 labelText: 'Email body',
                                 hintText: 'someone@example.com',
@@ -215,25 +182,6 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             ],
           )
-        ])
-
-        // body: Column(
-        //   children: [
-        //     const Text('Fill out a form'),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         // Do something when the button is pressed
-        //       },
-        //       child: const Text('OSHA Form'),
-        //     ),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         // Do something when the button is pressed
-        //       },
-        //       child: const Text('Lab Safety Inspection Form'),
-        //     ),
-        //   ],
-        // ),
-        );
+        ]));
   }
 }
