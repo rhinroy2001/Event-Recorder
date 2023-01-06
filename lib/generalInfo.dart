@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 
 class Info extends StatelessWidget {
   const Info({super.key});
@@ -68,6 +69,21 @@ class Info extends StatelessWidget {
             ),
           ),
         ),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          ElevatedButton(
+            onPressed: () {
+              main();
+            },
+            child: const Text('Cancel', // Need a warning pop up
+                style: TextStyle(fontSize: 20)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // go to next page on lab inspection form
+            },
+            child: const Text('Next', style: TextStyle(fontSize: 20)),
+          ),
+        ])
       ],
     );
   }
