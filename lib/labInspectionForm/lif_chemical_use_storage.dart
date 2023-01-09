@@ -1,10 +1,7 @@
-// TODO: Place holder question area with sample questions.
+//TODO: (Maybe) I would kind of like to make these widgets read questions in from a txt file
 
 import 'package:flutter/material.dart';
-
-/* void labInspection() {
-  runApp(const LabInspectionForm_LabPractices());
-} */
+import '../question_checkbox.dart';
 
 // Create a Form widget.
 class ChemicalUseStorage extends StatefulWidget {
@@ -21,9 +18,6 @@ class ChemicalUseStorage extends StatefulWidget {
 class ChemicalUseStorageState extends State<ChemicalUseStorage> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,35 +25,47 @@ class ChemicalUseStorageState extends State<ChemicalUseStorage> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
-          TextFormField(
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ),
-        ],
+          CheckBoxQuestion(
+              theQuestion: "Chemicals not properly segregated by hazard class"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "High-pressure gas cylinders unsecured, uncapped, or transported unsafely"),
+          CheckBoxQuestion(
+              theQuestion: "Hazardous chemicals stored above eye level"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Fume hood used as storage area for hazardous chemicals"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Excessive quantities of hazardous chemicals/reagents stored on lab bench top"),
+          CheckBoxQuestion(
+              theQuestion: "Hazardous chemicals/reagents stored on the floor"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Chemicals susceptible to peroxide formation are not dated/expired"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Chemicals not labeled with the following information: Full chemical name, Chemical concentration, Hazard class"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Storing an uncapped chemical container or allowing a chemical liquid to evaporate inside or outside the fume hood"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Flammable liquids not stored in flammable storage cabinet"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Flammable storage cabinets not located in safe area"),
+          CheckBoxQuestion(
+              theQuestion: "Excessive quantities of flammable liquids present"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Flammable liquids are stored in non-explosion-proof/non-flammable-proof refrigerator"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Unattended chemicals not secured against unauthorized access")
+        ], // ListView Children
       ),
     );
   }

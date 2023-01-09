@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'lif_general_info.dart';
 import 'lif_chemical_hygiene_plan.dart';
 import 'lif_chemical_use_storage.dart';
+import 'lif_general_fire_safety.dart';
+import 'lif_general_info.dart';
+import 'lif_hazardous_waste_compliance.dart';
 import 'lif_lab_practices.dart';
+import 'lif_personal_protection.dart';
+import 'lif_safety_equipment.dart';
+import 'lif_signs_postings.dart';
 
 void labInspection() {
   runApp(const MyApp());

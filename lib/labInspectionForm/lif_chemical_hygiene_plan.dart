@@ -1,10 +1,7 @@
-// TODO: Place holder question area with sample questions.
+//TODO: (Maybe) I would kind of like to make these widgets read questions in from a txt file
 
 import 'package:flutter/material.dart';
-
-/* void labInspection() {
-  runApp(const LabInspectionForm_LabPractices());
-} */
+import '../question_checkbox.dart';
 
 // Create a Form widget.
 class ChemicalHygienePlan extends StatefulWidget {
@@ -21,9 +18,6 @@ class ChemicalHygienePlan extends StatefulWidget {
 class ChemicalHygienePlanState extends State<ChemicalHygienePlan> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,34 +25,20 @@ class ChemicalHygienePlanState extends State<ChemicalHygienePlan> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
-          TextFormField(
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ),
+          CheckBoxQuestion(theQuestion: "Chemical Hygiene Plan unavailable"),
+          CheckBoxQuestion(theQuestion: "MSDS's unavailable for lab employees"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Laboratory Safety and Compliance training outdated"),
+          CheckBoxQuestion(
+              theQuestion: "New Employees have not attended safety training"),
+          CheckBoxQuestion(
+              theQuestion:
+                  "Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
+          CheckBoxQuestion(theQuestion: "Chemical inventory unavailable"),
+          CheckBoxQuestion(theQuestion: "Previous lab inspection not posted")
         ],
       ),
     );
