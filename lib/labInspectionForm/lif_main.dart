@@ -1,9 +1,14 @@
+import 'package:event_recorder/labInspectionForm/lif_comments.dart';
+import 'package:event_recorder/labInspectionForm/lif_signature.dart';
 import 'package:flutter/material.dart';
-import 'lif_general_info.dart';
 import 'lif_chemical_hygiene_plan.dart';
 import 'lif_chemical_use_storage.dart';
-import 'lif_lab_practices.dart';
 import 'lif_general_fire_safety.dart';
+import 'lif_general_info.dart';
+import 'lif_hazardous_waste_compliance.dart';
+import 'lif_lab_practices.dart';
+import 'lif_personal_protection.dart';
+import 'lif_safety_equipment.dart';
 import 'lif_signs_postings.dart';
 
 void labInspection() {
@@ -21,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: DefaultTabController(
-        length: 9,
+        length: 11,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
@@ -35,6 +40,8 @@ class MyApp extends StatelessWidget {
                 Tab(text: 'Safety Equipment'), // Safety Equipment
                 Tab(text: 'Hazardous Waste Compliance'), // HazWasteCompliance
                 Tab(text: 'Personal Protection'), // Personal Protection
+                Tab(text: 'Comments'),
+                Tab(text: 'Signature'),
               ],
             ),
             title: const Text('Lab Inspection Form'),
@@ -50,9 +57,11 @@ class MyApp extends StatelessWidget {
               LabPractices(), // Laboratory Practices
               ChemicalHygienePlan(), // Chemical Hygiene Plan
               ChemicalUseStorage(), // Chemical Use and Storage
-              // Icon(Icons.directions_transit), // Safety Equipment
-              // Icon(Icons.directions_transit), // Hazardous Waste Compliance
-              // Icon(Icons.directions_transit), // Personal Protection
+              Icon(Icons.directions_transit), // Safety Equipment
+              Icon(Icons.directions_transit), // Hazardous Waste Compliance
+              Icon(Icons.directions_transit), // Personal Protection
+              Comments(),
+              SignatureForm()
             ],
           ),
         ),
