@@ -1,3 +1,5 @@
+import 'package:event_recorder/labInspectionForm/lif_comments.dart';
+import 'package:event_recorder/labInspectionForm/lif_signature.dart';
 import 'package:flutter/material.dart';
 import 'lif_chemical_hygiene_plan.dart';
 import 'lif_chemical_use_storage.dart';
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: DefaultTabController(
-        length: 9,
+        length: 11,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
                 Tab(text: 'Safety Equipment'), // Safety Equipment
                 Tab(text: 'Hazardous Waste Compliance'), // HazWasteCompliance
                 Tab(text: 'Personal Protection'), // Personal Protection
+                Tab(text: 'Comments'),
+                Tab(text: 'Signature'),
               ],
             ),
             title: const Text('Lab Inspection Form'),
@@ -54,6 +58,8 @@ class MyApp extends StatelessWidget {
               SafetyEquipment(), // Safety Equipment
               HazWasteCompliance(), // Hazardous Waste Compliance
               PersonalProtection() // Personal Protection
+              Comments(),
+              SignatureForm()
             ],
           ),
         ),
