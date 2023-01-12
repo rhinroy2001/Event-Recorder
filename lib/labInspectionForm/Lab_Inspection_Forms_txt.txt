@@ -1,0 +1,84 @@
+[General Fire Safety and Housekeeping]
+Aisles and walkways not free of tripping hazards
+High shelves and/or cabinet tops have items which may fall and injure someone
+Empty containers, boes, and broken equipment not promptly discarded
+Emergency exit or egress route blocked or poorly accessable
+Power cord found in poor condition or not tie wrapped
+Energized electric panel uncovered and/or blocked
+Portable elecgric heater used in the laboratory
+Failure to remediate non-hazardous chemical release within a timely manner
+Laboratory doors propped open
+Items stored within 18 inches of the ceiling
+Workers do not use a safe platform for climbing
+
+[Signs and Postings]
+Lab specific emergency contact list not updated or posted
+Emergency procedures not posted by the laboratory phone
+Laboratory refrigerators/freezers/microwaves not labeled as "Not for Food Use"/"Not flammable Liquid Storage"
+Cabinets and/or storage areas not labeled properly
+
+[Laboratory Practices]
+Gloves are work outside the lab
+Evidence of personnel eating or drinking in the laboratory
+Food items stored with hazardous chemicals
+Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators
+
+[Chemical Hygiene Plan and Training Records]
+Chemical Hygiene Plan unavailable
+MSDS's unavailable for lab employees
+Laboratory Safety and Compliance training outdated
+New Employees have not attended safety training
+Annual Lab Specific Training Outline unavailable and/or attendance not documented
+Chemical inventory unavailable
+Previous lab inspection not posted
+
+[Chemical Use and Storage]
+Chemicals not properly segregated by hazard class
+High-pressure gas cylinders unsecured, uncapped, or transported unsafely
+Hazardous chemicals stored above eye level
+Fume hood used as storage area for hazardous chemicals
+Excessive quantities of hazardous chemicals/reagents stored on lab bench top
+Hazardous chemicals/reagents stored on the floor
+Chemicals susceptible to peroxide formation are not dated/expired
+Chemicals not labeled with the following information: Full chemical name, Chemical concentration, Hazard class
+Storing an uncapped chemical container or allowing a chemical liquid to evaporate inside or outside the fume hood
+Flammable liquids not stored in flammable storage cabinet
+Flammable storage cabinets not located in safe area
+Excessive quantities of flammable liquids present
+Flammable liquids are stored in non-explosion-proof/non-flammable-proof refrigerator
+Unattended chemicals not secured against unauthorized access
+
+[Safety Equipment and Engineering Controls]
+Eye wash station unavailable or not accessible/blocked
+Eye wash station weekly inspection not documented
+Safety shower unavailable or not accessible
+First aid kit location ot known and/or not available
+Fire extinguisher not readily accessible and/or inspected
+Fume hood unavailable or not used when handling hazardous chemicals
+Fume hood not inspected annually
+Chemical containers in fume hood not capped or in poor condition
+Performance of fume hood impeded by overcrowding
+In-house vacuum system not adequately protected
+Vacuum system flask not labeled and protected
+
+[Hazardous Waste Compliance]
+Hazardous chemical waste - not labeled as waste or hazardous waste
+Hazardous chemical waste - all chemical components not listed
+Hazardous chemical waste - no accumulation start date
+Hazardous chemical waste storage - Not segregated by hazard class
+Hazardous chemical waste storage - greater than one container per chemical waste stream
+Hazardous chemical waste storage - excessive amounts of hazardous wastes accumulated (chemical, biological, radioactive)
+Hazardous chemical waste storage - accumulation start date greater than 1 year
+Sharps, Broken Glass, Empty Containers - Sharps containers not used or disposed of improperly
+Sharps, Broken Glass, Empty Containers - broken glass not placed in proper receptacle
+Sharps, Broken Glass, Empty Containers - failed to triple rinse and remove/mark out labels of empty chemical containers
+Mercury/Chemical Spills - Broken mercury thermometer not contained or labeled
+Mercury/Chemical Spills - Failure to promptly report a mercury/chemical release
+
+[Personal Protection]
+Respirators used without proper clearance/fit testing/ training
+Personal protective equipment (eg gloves, safety glasses, lab coat) unavailable or of limited quantity
+Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents
+Evidence of open toed shoes (sandals, etc) work in the laboratory
+
+
