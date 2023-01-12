@@ -49,9 +49,13 @@ class MyApp extends StatelessWidget {
           body: const TabBarView(
             // TODO: Replace Icon items with the correct calls to the corresponding tab
             children: [
-              Info(), // General Information
-              GeneralFireSafety(), // General Fire Safety
-              SignsPostings(), // Signs and Posting
+
+              Info(),
+              FireSafety(), // General Information
+              SignsPostings(),
+              //Icon(Icons.directions_transit), // General Fire Safety
+              // Icon(Icons.directions_transit), // Signs and Posting
+
               LabPractices(), // Laboratory Practices
               ChemicalHygienePlan(), // Chemical Hygiene Plan
               ChemicalUseStorage(), // Chemical Use and Storage
