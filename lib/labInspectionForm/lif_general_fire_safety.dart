@@ -1,3 +1,4 @@
+import 'package:event_recorder/labInspectionForm/lif_signs_postings.dart';
 import 'package:flutter/material.dart';
 import 'package:event_recorder/main.dart';
 import 'lif_general_info.dart';
@@ -81,6 +82,22 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('General Fire Safety'),
       ),
+      floatingActionButton:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        /* FloatingActionButton(
+            child: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }), */
+        FloatingActionButton(
+            child: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignsPostings()),
+              );
+            }),
+      ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -121,7 +138,6 @@ class _HomePageState extends State<HomePage> {
             ) */
           ]),
         ),
-
       ),
     );
   }

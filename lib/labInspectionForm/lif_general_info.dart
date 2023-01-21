@@ -11,6 +11,22 @@ class Info extends StatelessWidget {
       appBar: AppBar(
         title: const Text('General Information'),
       ),
+      floatingActionButton:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        FloatingActionButton(
+            child: const Text("Cancel"),
+            onPressed: () {
+              main();
+            }),
+        FloatingActionButton(
+            child: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FireSafety()),
+              );
+            }),
+      ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -76,7 +92,7 @@ class Info extends StatelessWidget {
                 ),
               ),
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            /* Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               ElevatedButton(
                 onPressed: () {
                   main();
@@ -86,11 +102,11 @@ class Info extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  //FireSafety();
+                  FireSafety();
                 },
                 child: const Text('Next', style: TextStyle(fontSize: 20)),
               ),
-            ])
+            ]) */
           ]),
         ),
       ),

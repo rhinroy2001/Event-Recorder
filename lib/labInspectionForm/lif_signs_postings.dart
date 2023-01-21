@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:event_recorder/main.dart';
 import 'lif_general_info.dart';
+import 'lif_chemical_hygiene_plan.dart';
 
 class SignsPostings extends StatelessWidget {
   const SignsPostings({Key? key}) : super(key: key);
@@ -54,6 +55,23 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Signs and Postings'),
       ),
+      floatingActionButton:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        /* FloatingActionButton(
+            child: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            }), */
+        FloatingActionButton(
+            child: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ChemicalHygienePlan()),
+              );
+            }),
+      ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -94,7 +112,6 @@ class _HomePageState extends State<HomePage> {
             ) */
           ]),
         ),
-
       ),
     );
   }

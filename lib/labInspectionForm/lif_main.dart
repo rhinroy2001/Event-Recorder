@@ -12,10 +12,13 @@ import 'lif_safety_equipment.dart';
 import 'lif_signs_postings.dart';
 
 void labInspection() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    //title: 'Navigation Basics',
+    home: Info(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+/* class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
@@ -28,8 +31,9 @@ class MyApp extends StatelessWidget {
       home: DefaultTabController(
         length: 11,
         child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
+          body: Info(),
+          /* appBar: AppBar(
+                bottom: const TabBar(
               tabs: [
                 Tab(text: 'General Information'), // General Information
                 Tab(text: 'General Fire Safety'), // General Fire Safety
@@ -50,8 +54,8 @@ class MyApp extends StatelessWidget {
             // TODO: Replace Icon items with the correct calls to the corresponding tab
             children: [
 
-              Info(),
-              FireSafety(), // General Information
+              Info(), //General Information
+              FireSafety(), // General Fire Safety
               SignsPostings(),
               //Icon(Icons.directions_transit), // General Fire Safety
               // Icon(Icons.directions_transit), // Signs and Posting
@@ -61,11 +65,10 @@ class MyApp extends StatelessWidget {
               ChemicalUseStorage(), // Chemical Use and Storage
               SafetyEquipment(), // Safety Equipment
               HazWasteCompliance(), // Hazardous Waste Compliance
-              PersonalProtection() // Personal Protection
+              PersonalProtection(), // Personal Protection
               Comments(),
               SignatureForm()
-            ],
-          ),
+            ],*/
         ),
       ),
     );
@@ -90,4 +93,4 @@ class _LabForm extends State<LabForm> {
       body: const Info(),
     );
   }
-}
+} */
