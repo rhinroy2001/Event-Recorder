@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "889302276831",
+    "project_id": "event-recorder-db",
+    "storage_bucket": "event-recorder-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889302276831:android:8f32d8b664010a41cee76a",
+        "android_client_info": {
+          "package_name": "com.example.event_recorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889302276831-0i21qhaskjihnk970bjhqnqcfp2upjm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8URv45OOvdepNNzy1gl4z88RT8fPqSUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889302276831-0i21qhaskjihnk970bjhqnqcfp2upjm4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "889302276831-vr5d00u0vdff7vmo20gbc7lmt6rklenu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eventRecorder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
