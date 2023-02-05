@@ -1,6 +1,7 @@
+import 'package:event_recorder/labInspectionForm/generalInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'labInspectionForm/lif_main.dart';
+//import 'labInspectionForm/lif_main.dart';
 
 void main() {
   runApp(const MyApp());

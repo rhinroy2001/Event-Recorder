@@ -1,6 +1,6 @@
-import 'package:event_recorder/labInspectionForm/lif_comments.dart';
-import 'package:event_recorder/labInspectionForm/lif_signature.dart';
-import 'package:event_recorder/labInspectionForm/lif_upload_photos.dart';
+import 'package:event_recorder/labInspectionForm_old/lif_comments.dart';
+import 'package:event_recorder/labInspectionForm_old/lif_signature.dart';
+import 'package:event_recorder/labInspectionForm_old/lif_upload_photos.dart';
 import 'package:flutter/material.dart';
 import 'lif_chemical_hygiene_plan.dart';
 import 'lif_chemical_use_storage.dart';
@@ -12,9 +12,9 @@ import 'lif_personal_protection.dart';
 import 'lif_safety_equipment.dart';
 import 'lif_signs_postings.dart';
 
-void labInspection() {
+/* void labInspection() {
   runApp(const MyApp());
-}
+} */
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
