@@ -43,6 +43,8 @@ dependencies:
   cupertino_icons: ^1.0.5
   firebase_core: ^2.4.1
   firebase_database: ^10.0.9
+  firebase_storage: ^11.0.10
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   url_launcher: ^6.1.8
