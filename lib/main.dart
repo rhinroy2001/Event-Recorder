@@ -1,4 +1,5 @@
 import 'package:event_recorder/labInspectionForm/generalInformation.dart';
+// import 'package:event_recorder/labInspectionForm/generalinformation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'labInspectionForm/lif_main.dart';
@@ -39,19 +40,30 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController emailBodyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var orientation = MediaQuery.of(context).orientation;
+    var size = MediaQuery.of(context).size;
+    var height = size.height;
+    var width = size.width;
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+              width: width / 2,
+              height: height,
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.black)),
+              child: Column(
                 //mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text('Previously Completed Forms',
-                      style: TextStyle(fontSize: 25)),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                    child: const Text('Previously Completed Forms',
+                        style: TextStyle(fontSize: 25)),
+                  ),
                   TextButton(
                       onPressed: () {
                         // do something here
@@ -60,66 +72,85 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(fontSize: 20)))
                 ],
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const Text(
-                          'Send a follow up email',
-                          style: TextStyle(fontSize: 25),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: width / 2,
+                  height: orientation == Orientation.landscape
+                      ? height / 2.17
+                      : height / 2.12,
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Center(
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                            0,
+                            15,
+                            0,
+                            0,
+                          ),
+                          child: const Text(
+                            'Send a follow up email',
+                            style: TextStyle(fontSize: 25),
+                          ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 16),
-                          child: SizedBox(
-                            height: 60,
-                            width: 300,
-                            child: TextField(
-                              controller: mailToController,
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                labelText: 'Mail to',
-                              ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 16),
+                        child: SizedBox(
+                          height: 60,
+                          width: width / 2.1,
+                          child: TextField(
+                            controller: mailToController,
+                            decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText: 'Mail to',
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 16),
-                          child: SizedBox(
-                            height: 60,
-                            width: 300,
-                            child: TextField(
-                              controller: subjectController,
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                labelText: 'Subject',
-                              ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 16),
+                        child: SizedBox(
+                          height: 60,
+                          width: width / 2.1,
+                          child: TextField(
+                            controller: subjectController,
+                            decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText: 'Subject',
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 16),
-                          child: SizedBox(
-                            height: 60,
-                            width: 300,
-                            child: TextField(
-                              controller: emailBodyController,
-                              decoration: const InputDecoration(
-                                border: UnderlineInputBorder(),
-                                labelText: 'Email body',
-                                hintText: 'someone@example.com',
-                              ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 16),
+                        child: SizedBox(
+                          height: 60,
+                          width: width / 2.1,
+                          child: TextField(
+                            controller: emailBodyController,
+                            decoration: const InputDecoration(
+                              border: UnderlineInputBorder(),
+                              labelText: 'Email body',
+                              hintText: 'someone@example.com',
                             ),
                           ),
                         ),
-                        ElevatedButton(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 8),
+                        child: ElevatedButton(
                           onPressed: () async {
                             // Compose the email URL
                             var mailTo = mailToController.text;
@@ -160,32 +191,49 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: const Text('Send Email',
                               style: TextStyle(fontSize: 20)),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                  Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    const Text('Fill out a form',
-                        style: TextStyle(fontSize: 25)),
-                    ElevatedButton(
-                      onPressed: () {
-                        labInspection();
-                      },
-                      child: const Text('Lab Safety Inspection Form',
-                          style: TextStyle(fontSize: 20)),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Do something when the button is pressed
-                      },
-                      child: const Text('OSHA Form',
-                          style: TextStyle(fontSize: 20)),
-                    ),
-                  ])
-                ],
-              )
-            ],
-          )
-        ]));
+                ),
+                Container(
+                  width: width / 2,
+                  height: orientation == Orientation.landscape
+                      ? height / 2.17
+                      : height / 2.13,
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black)),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                          child: const Text('Fill out a form',
+                              style: TextStyle(fontSize: 25)),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        const GeneralInfo(title: ""))));
+                          },
+                          child: const Text('Lab Safety Inspection Form',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Do something when the button is pressed
+                          },
+                          child: const Text('OSHA Form',
+                              style: TextStyle(fontSize: 20)),
+                        ),
+                      ]),
+                )
+              ],
+            )
+          ],
+        ));
   }
 }
