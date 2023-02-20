@@ -1,4 +1,5 @@
 import 'package:event_recorder/labInspectionForm/hazardouswaste_new.dart';
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -71,19 +72,32 @@ class SafetyEquipmentState extends State<SafetyEquipment> {
                       label:
                           "b. Vacuum system flask not labeled and protected"),
                   //TaskItem(label: ""),
-
-                  Comments(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConfirmTask(label: "This page is completed."),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Buttons(),
-                  ),
                 ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Comments(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: UploadPhoto(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ConfirmTask(label: "This page is completed."),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Buttons(),
               ),
             ],
           ),

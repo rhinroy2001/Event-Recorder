@@ -1,4 +1,5 @@
 import 'package:event_recorder/labInspectionForm/safetyequipment_new.dart';
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -90,19 +91,32 @@ class ChemicalUseState extends State<ChemicalUse> {
                       label:
                           "39. Unattended chemicals not secured against unauthorized access"),
                   //TaskItem(label: ""),
-
-                  Comments(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConfirmTask(label: "This page is completed."),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Buttons(),
-                  ),
                 ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Comments(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: UploadPhoto(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ConfirmTask(label: "This page is completed."),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Buttons(),
               ),
             ],
           ),

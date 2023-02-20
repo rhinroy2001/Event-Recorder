@@ -117,9 +117,15 @@ class SignatureState extends State<SignatureForm> {
     return Scaffold(
         appBar: AppBar(title: const Text('Lab Inspection Form')),
         body: Column(children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          ),
           Title(
             color: Colors.lightBlueAccent,
             child: Text('Sign Here', style: TextStyle(fontSize: 30)),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           ),
           Form(
               key: _formKey,

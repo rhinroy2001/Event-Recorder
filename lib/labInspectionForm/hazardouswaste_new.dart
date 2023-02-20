@@ -1,3 +1,4 @@
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
 import 'package:event_recorder/labInspectionForm/personalprotection_new.dart';
 
@@ -77,19 +78,32 @@ class HazardousWasteState extends State<HazardousWaste> {
                       label:
                           "b. Failure to promptly report a mercury/ chemical release"),
                   //TaskItem(label: ""),
-
-                  Comments(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConfirmTask(label: "This page is completed."),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Buttons(),
-                  ),
                 ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Comments(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: UploadPhoto(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ConfirmTask(label: "This page is completed."),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Buttons(),
               ),
             ],
           ),

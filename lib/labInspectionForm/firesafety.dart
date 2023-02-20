@@ -1,3 +1,4 @@
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
 import 'package:event_recorder/labInspectionForm/signspostings.dart';
 
@@ -76,19 +77,32 @@ class FireSafetyState extends State<FireSafety> {
                       label:
                           "11. Workers do not use a safe platform for climbing"),
                   //TaskItem(label: ""),
-
-                  Comments(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConfirmTask(label: "This page is completed."),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Buttons(),
-                  ),
                 ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Comments(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: UploadPhoto(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ConfirmTask(label: "This page is completed."),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Buttons(),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:event_recorder/labInspectionForm/signature.dart';
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -54,19 +55,32 @@ class PersonalProtectionState extends State<PersonalProtection> {
                       label:
                           "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
                   //TaskItem(label: ""),
-
-                  Comments(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: ConfirmTask(label: "This page is completed."),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Buttons(),
-                  ),
                 ],
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Comments(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: UploadPhoto(),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ConfirmTask(label: "This page is completed."),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Buttons(),
               ),
             ],
           ),
