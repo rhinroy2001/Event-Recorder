@@ -1,5 +1,12 @@
 import 'package:event_recorder/labInspectionForm/firesafety.dart';
+import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 
 void labInspection() {
   runApp(const MyApp());
@@ -37,7 +44,7 @@ class GeneralInfoState extends State<GeneralInfo> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,6 +93,15 @@ class GeneralInfoState extends State<GeneralInfo> {
                   border: UnderlineInputBorder(),
                   labelText: 'Phone',
                 ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                child: Text('Take Photo'),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                child: UploadPhoto(),
               ),
               Padding(
                 padding:
