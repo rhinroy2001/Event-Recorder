@@ -34,53 +34,87 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class SizeConfig {
+  static MediaQueryData? _mediaQueryData;
+  static double? screenWidth;
+  static double? screenHeight;
+  static double? blockSizeHorizontal;
+  static double? blockSizeVertical;
+  static double? _safeAreaHorizontal;
+  static double? _safeAreaVertical;
+  static double? safeBlockHorizontal;
+  static double? safeBlockVertical;
+  static Orientation? orientation;
+
+  void init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData!.size.width;
+    screenHeight = _mediaQueryData!.size.height;
+    blockSizeHorizontal = screenWidth! / 100.0;
+    blockSizeVertical = screenHeight! / 100;
+    _safeAreaHorizontal =
+        _mediaQueryData!.padding.left + _mediaQueryData!.padding.right;
+    _safeAreaVertical =
+        _mediaQueryData!.padding.top + _mediaQueryData!.padding.bottom;
+    safeBlockHorizontal = (screenWidth! - _safeAreaHorizontal!) / 100;
+    safeBlockVertical = (screenHeight! - _safeAreaVertical!) / 100;
+    orientation = _mediaQueryData!.orientation;
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController mailToController = TextEditingController();
   TextEditingController subjectController = TextEditingController();
   TextEditingController emailBodyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
-    var size = MediaQuery.of(context).size;
-    var height = size.height;
-    var width = size.width;
+    SizeConfig().init(context);
     return Scaffold(
         appBar: AppBar(
+          // toolbarHeight: SizeConfig.orientation == Orientation.portrait
+          //     ? SizeConfig.safeBlockVertical! * 6
+          //     : SizeConfig.safeBlockVertical! * 5,
           title: Text(widget.title),
         ),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Container(
-              width: width / 2,
-              height: height,
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.black)),
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                    child: const Text('Previously Completed Forms',
-                        style: TextStyle(fontSize: 25)),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        // do something here
-                      },
-                      child: const Text('this will be the name of a form',
-                          style: TextStyle(fontSize: 20)))
-                ],
+            Expanded(
+              child: Container(
+                // width: SizeConfig.safeBlockHorizontal! * 50,
+                // height: SizeConfig.safeBlockVertical! * 100,
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black)),
+                child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      child: const Text('Previously Completed Forms',
+                          key: Key('previouslyCompletedForm'),
+                          style: TextStyle(fontSize: 25)),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          // do something here
+                        },
+                        child: const Text('this will be the name of a form',
+                            style: TextStyle(fontSize: 20)))
+                  ],
+                ),
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: width / 2,
-                  height: orientation == Orientation.landscape
-                      ? height / 2.17
-                      : height / 2.12,
+                  // width: SizeConfig.safeBlockHorizontal! * 50,
+                  // height: SizeConfig.orientation == Orientation.portrait
+                  //     ? SizeConfig.safeBlockVertical! * 47
+                  //     : SizeConfig.safeBlockVertical! * 52,
+                  // orientation == Orientation.landscape
+                  //     ? height / 2.17
+                  //     : height / 2.12,
                   decoration:
                       BoxDecoration(border: Border.all(color: Colors.black)),
                   child: Column(
@@ -95,9 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             0,
                             0,
                           ),
-                          child: const Text(
-                            'Send a follow up email',
-                            style: TextStyle(fontSize: 25),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: const Text(
+                              'Send a follow up email',
+                              style: TextStyle(fontSize: 25),
+                              key: Key('sendFollowUpEmail'),
+                            ),
                           ),
                         ),
                       ),
@@ -106,8 +144,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             horizontal: 8, vertical: 16),
                         child: SizedBox(
                           height: 60,
-                          width: width / 2.1,
+                          width: SizeConfig.screenWidth! / 2.1,
                           child: TextField(
+                            key: Key('mailTo'),
                             controller: mailToController,
                             decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
@@ -121,8 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             horizontal: 8, vertical: 16),
                         child: SizedBox(
                           height: 60,
-                          width: width / 2.1,
+                          width: SizeConfig.screenWidth! / 2.1,
                           child: TextField(
+                            key: Key('subject'),
                             controller: subjectController,
                             decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
@@ -136,8 +176,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             horizontal: 8, vertical: 16),
                         child: SizedBox(
                           height: 60,
-                          width: width / 2.1,
+                          width: SizeConfig.screenWidth! / 2.1,
                           child: TextField(
+                            key: Key('emailBody'),
                             controller: emailBodyController,
                             decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
@@ -151,6 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 16, horizontal: 8),
                         child: ElevatedButton(
+                          key: Key('sendEmail'),
                           onPressed: () async {
                             // Compose the email URL
                             var mailTo = mailToController.text;
@@ -196,22 +238,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: width / 2,
-                  height: orientation == Orientation.landscape
-                      ? height / 2.17
-                      : height / 2.13,
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.black)),
+                Expanded(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                           child: const Text('Fill out a form',
+                              key: Key('fillOutForm'),
                               style: TextStyle(fontSize: 25)),
                         ),
                         ElevatedButton(
+                          key: Key('labSafetyInspectionForm'),
                           onPressed: () {
                             Navigator.push(
                                 context,
@@ -223,6 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               style: TextStyle(fontSize: 20)),
                         ),
                         ElevatedButton(
+                          key: Key('OSHAForm'),
                           onPressed: () {
                             // Do something when the button is pressed
                           },

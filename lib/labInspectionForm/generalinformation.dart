@@ -12,20 +12,20 @@ void labInspection() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const GeneralInfo(title: 'Lab Inspection Form'),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Event Recorder',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const GeneralInfo(title: 'Lab Inspection Form'),
+//     );
+//   }
+// }
 
 class GeneralInfo extends StatefulWidget {
   const GeneralInfo({super.key, required this.title});
