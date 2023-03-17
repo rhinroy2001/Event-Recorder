@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'labInspectionForm/lif_main.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:event_recorder/OSHAForm/OSHAForm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -263,7 +264,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ElevatedButton(
                           key: Key('OSHAForm'),
                           onPressed: () {
-                            // Do something when the button is pressed
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) =>
+                                        const OSHA(title: ""))));
                           },
                           child: const Text('OSHA Form',
                               style: TextStyle(fontSize: 20)),
