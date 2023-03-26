@@ -2,25 +2,6 @@
 import 'package:event_recorder/main.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HazardousWaste(title: 'Lab Inspection Form'),
-    );
-  }
-}
-
 class HazardousWaste extends StatefulWidget {
   const HazardousWaste({super.key, required this.title});
   final String title;

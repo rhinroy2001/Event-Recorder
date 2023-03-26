@@ -1,20 +1,18 @@
 import 'package:event_recorder/labInspectionForm/generalInformation.dart';
-// import 'package:event_recorder/labInspectionForm/generalinformation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:url_launcher/url_launcher.dart';
-//import 'labInspectionForm/lif_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:event_recorder/OSHAForm/OSHAForm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,13 +20,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Environmental Health and Safety'),
+      home: const MyHomePage(
+        title: 'Environmental Health and Safety',
+        key: Key('home page'),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -255,8 +256,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) =>
-                                        const GeneralInfo(title: ""))));
+                                    builder: ((context) => const GeneralInfo(
+                                        key: Key('general info'), title: ""))));
                           },
                           child: const Text('Lab Safety Inspection Form',
                               style: TextStyle(fontSize: 20)),

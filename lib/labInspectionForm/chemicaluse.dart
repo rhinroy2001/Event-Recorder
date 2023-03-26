@@ -1,21 +1,10 @@
 import 'package:event_recorder/labInspectionForm/safetyequipment_new.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ChemicalUse(title: 'Lab Inspection Form'),
-    );
-  }
-}
+import 'package:event_recorder/labInspectionForm/task_item.dart';
+import 'package:event_recorder/labInspectionForm/sub_task_item.dart';
+import 'package:event_recorder/labInspectionForm/confirm_task.dart';
+import 'package:event_recorder/labInspectionForm/comments.dart';
 
 class ChemicalUse extends StatefulWidget {
   const ChemicalUse({super.key, required this.title});
@@ -26,6 +15,18 @@ class ChemicalUse extends StatefulWidget {
 }
 
 class ChemicalUseState extends State<ChemicalUse> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      final String text = controller.text;
+      controller.value = controller.value.copyWith(
+        text: text,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,50 +45,65 @@ class ChemicalUseState extends State<ChemicalUse> {
                   Text("Chemical Use and Storage",
                       style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      key: Key('1'),
                       label:
                           "26. Chemicals not properly segregated by hazard class"),
 
                   TaskItem(
+                      key: Key('2'),
                       label:
                           "27. High-pressure gas cylinders unsecured, uncapped, or transported unsafely"),
 
                   TaskItem(
+                      key: Key('3'),
                       label: "28. Hazardous chemicals stored above eye level"),
 
                   TaskItem(
+                      key: Key('4'),
                       label:
                           "29. Fume hood used as storage area for hazardous chemicals"),
                   TaskItem(
+                      key: Key('5'),
                       label:
                           "30. Excessive quantities of hazardous chemicals/reagents stored on lab bench top"),
                   TaskItem(
+                      key: Key('6'),
                       label:
                           "31. Hazardous chemicals/reagents stored on the floor"),
                   TaskItem(
+                      key: Key('7'),
                       label:
                           "32. Chemicals susceptible to peroxide formation are not dated/expired"),
                   TaskItem(
+                      key: Key('8'),
                       label:
                           "33. Chemicals not labeled with the following information:"),
-                  SubTaskItem(label: "a. Full chemical name"),
-                  SubTaskItem(label: "b. Chemical concentration"),
-                  SubTaskItem(label: "c. Hazard class"),
+                  SubTaskItem(key: Key('9'), label: "a. Full chemical name"),
+                  SubTaskItem(
+                      key: Key('10'), label: "b. Chemical concentration"),
+                  SubTaskItem(key: Key('11'), label: "c. Hazard class"),
                   TaskItem(
+                      key: Key('12'),
                       label:
                           "34. Storing an uncapped chemical container or allowing a chemical liquid to evaporate inside or outside the fume hood"),
                   TaskItem(
+                      key: Key('13'),
                       label:
                           "35. Flammable liquids not stored in flammable storage cabinet"),
                   TaskItem(
+                      key: Key('14'),
                       label:
                           "36. Flammable storage cabinets not located in safe area"),
                   TaskItem(
+                      key: Key('15'),
                       label:
                           "37. Excessive quantities of flammable liquids present"),
                   TaskItem(
+                      key: Key('16'),
                       label:
                           "38. Flammable liquids are stored in non-explosion-proof/non-flammable-proof refrigerator"),
                   TaskItem(
+                      key: Key('17'),
                       label:
                           "39. Unattended chemicals not secured against unauthorized access"),
                   //TaskItem(label: ""),
@@ -96,7 +112,9 @@ class ChemicalUseState extends State<ChemicalUse> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(),
+                child: Comments(
+                  controller: controller,
+                ),
               ),
               Padding(
                 padding:
@@ -106,12 +124,13 @@ class ChemicalUseState extends State<ChemicalUse> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(),
+                child: UploadPhoto(key: Key('photo chemical use')),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(label: "This page is completed."),
+                child: ConfirmTask(
+                    key: Key('18'), label: "This page is completed."),
               ),
               Padding(
                 padding:
@@ -122,83 +141,6 @@ class ChemicalUseState extends State<ChemicalUse> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  TaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  TaskItemState createState() => TaskItemState();
-}
-
-class TaskItemState extends State<TaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class SubTaskItem extends StatefulWidget {
-  final String label;
-
-  SubTaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  SubTaskItemState createState() => SubTaskItemState();
-}
-
-class SubTaskItemState extends State<SubTaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class ConfirmTask extends StatefulWidget {
-  final String label;
-
-  ConfirmTask({Key? key, required this.label}) : super(key: key);
-
-  @override
-  ConfirmTaskState createState() => ConfirmTaskState();
-}
-
-class ConfirmTaskState extends State<ConfirmTask> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        //SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
@@ -254,39 +196,5 @@ class Buttons extends StatelessWidget {
       SizedBox(width: 20),
       NextButton(),
     ]));
-  }
-}
-
-class Comments extends StatefulWidget {
-  const Comments({super.key});
-
-  @override
-  CommentsState createState() {
-    return CommentsState();
-  }
-}
-
-class CommentsState extends State<Comments> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextField(
-              key: _formKey,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Comment Box",
-              ),
-              minLines: 1,
-              maxLines: 6,
-            ),
-          ],
-        ));
   }
 }

@@ -1,21 +1,10 @@
 import 'package:event_recorder/labInspectionForm/labpractices.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ChemicalHygiene(title: 'Lab Inspection Form'),
-    );
-  }
-}
+import 'package:event_recorder/labInspectionForm/task_item.dart';
+import 'package:event_recorder/labInspectionForm/sub_task_item.dart';
+import 'package:event_recorder/labInspectionForm/confirm_task.dart';
+import 'package:event_recorder/labInspectionForm/comments.dart';
 
 class ChemicalHygiene extends StatefulWidget {
   const ChemicalHygiene({super.key, required this.title});
@@ -26,6 +15,18 @@ class ChemicalHygiene extends StatefulWidget {
 }
 
 class ChemicalHygieneState extends State<ChemicalHygiene> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      final String text = controller.text;
+      controller.value = controller.value.copyWith(
+        text: text,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,32 +44,46 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
                 children: [
                   Text("Chemical Hygiene Plan and Training Records",
                       style: TextStyle(fontSize: 25)),
-                  TaskItem(label: "16. Chemical Hygiene Plan unavailable"),
-
-                  TaskItem(label: "17. MSDS's unavailable for lab employees"),
+                  TaskItem(
+                      key: Key('1'),
+                      label: "16. Chemical Hygiene Plan unavailable"),
 
                   TaskItem(
+                      key: Key('2'),
+                      label: "17. MSDS's unavailable for lab employees"),
+
+                  TaskItem(
+                      key: Key('3'),
                       label:
                           "18. Laboratory Safety and Compliance training outdated"),
                   SubTaskItem(
+                      key: Key('4'),
                       label:
                           "a. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
                   SubTaskItem(
+                      key: Key('5'),
                       label:
                           "b. New Employees have not attended safety training"),
 
                   TaskItem(
+                      key: Key('6'),
                       label:
                           "19. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
-                  TaskItem(label: "20. Chemical inventory unavailable"),
-                  TaskItem(label: "21. Previous lab inspection not posted"),
+                  TaskItem(
+                      key: Key('7'),
+                      label: "20. Chemical inventory unavailable"),
+                  TaskItem(
+                      key: Key('8'),
+                      label: "21. Previous lab inspection not posted"),
                   //TaskItem(label: ""),
                 ],
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(),
+                child: Comments(
+                  controller: controller,
+                ),
               ),
               Padding(
                 padding:
@@ -78,12 +93,15 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(),
+                child: UploadPhoto(
+                  key: Key('photo chemical hygiene'),
+                ),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(label: "This page is completed."),
+                child: ConfirmTask(
+                    key: Key('9'), label: "This page is completed."),
               ),
               Padding(
                 padding:
@@ -94,83 +112,6 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  TaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  TaskItemState createState() => TaskItemState();
-}
-
-class TaskItemState extends State<TaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class SubTaskItem extends StatefulWidget {
-  final String label;
-
-  SubTaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  SubTaskItemState createState() => SubTaskItemState();
-}
-
-class SubTaskItemState extends State<SubTaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class ConfirmTask extends StatefulWidget {
-  final String label;
-
-  ConfirmTask({Key? key, required this.label}) : super(key: key);
-
-  @override
-  ConfirmTaskState createState() => ConfirmTaskState();
-}
-
-class ConfirmTaskState extends State<ConfirmTask> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        //SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
@@ -198,11 +139,15 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('next'),
       onPressed: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const LabPractices(title: "")));
+                builder: (context) => const LabPractices(
+                      title: "",
+                      key: Key('lab practices'),
+                    )));
       },
       child: Container(
         color: Colors.blue,
@@ -226,39 +171,5 @@ class Buttons extends StatelessWidget {
       SizedBox(width: 20),
       NextButton(),
     ]));
-  }
-}
-
-class Comments extends StatefulWidget {
-  const Comments({super.key});
-
-  @override
-  CommentsState createState() {
-    return CommentsState();
-  }
-}
-
-class CommentsState extends State<Comments> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextField(
-              key: _formKey,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Comment Box",
-              ),
-              minLines: 1,
-              maxLines: 6,
-            ),
-          ],
-        ));
   }
 }

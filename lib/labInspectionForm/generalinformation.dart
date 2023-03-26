@@ -1,31 +1,7 @@
 import 'package:event_recorder/labInspectionForm/firesafety.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
+import 'package:event_recorder/personalProtection.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
-
-void labInspection() {
-  runApp(const MyApp());
-}
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Event Recorder',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const GeneralInfo(title: 'Lab Inspection Form'),
-//     );
-//   }
-// }
 
 class GeneralInfo extends StatefulWidget {
   const GeneralInfo({super.key, required this.title});
@@ -53,6 +29,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                     Text("General Information", style: TextStyle(fontSize: 25)),
               ),
               TextFormField(
+                key: Key('date'),
                 decoration: const InputDecoration(
                   //labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -60,6 +37,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                 ),
               ),
               TextFormField(
+                key: Key('faculty'),
                 decoration: const InputDecoration(
                   // labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -67,6 +45,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                 ),
               ),
               TextFormField(
+                key: Key('buildingRoom'),
                 decoration: const InputDecoration(
                   //labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -74,6 +53,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                 ),
               ),
               TextFormField(
+                key: Key('departmentDivision'),
                 decoration: const InputDecoration(
                   // labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -81,6 +61,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                 ),
               ),
               TextFormField(
+                key: Key('inspector'),
                 decoration: const InputDecoration(
                   //labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -88,6 +69,7 @@ class GeneralInfoState extends State<GeneralInfo> {
                 ),
               ),
               TextFormField(
+                key: Key('phone'),
                 decoration: const InputDecoration(
                   // labelStyle: TextStyle(fontSize: 24),
                   border: UnderlineInputBorder(),
@@ -106,7 +88,8 @@ class GeneralInfoState extends State<GeneralInfo> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(label: "This page is completed."),
+                child: ConfirmTask(
+                    key: Key('confirm'), label: "This page is completed."),
               ),
               Padding(
                 padding:
@@ -121,36 +104,11 @@ class GeneralInfoState extends State<GeneralInfo> {
   }
 }
 
-class ConfirmTask extends StatefulWidget {
-  final String label;
-
-  ConfirmTask({Key? key, required this.label}) : super(key: key);
-
-  @override
-  ConfirmTaskState createState() => ConfirmTaskState();
-}
-
-class ConfirmTaskState extends State<ConfirmTask> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        //SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
-    );
-  }
-}
-
 class BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('back'),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -170,12 +128,14 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('next'),
       onPressed: () {
         Navigator.push(
             // will work with firesafety.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const FireSafety(title: "")));
+                builder: (context) =>
+                    const FireSafety(key: Key('fire safety'), title: "")));
       },
       child: Container(
         color: Colors.blue,
