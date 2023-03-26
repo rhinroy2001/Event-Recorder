@@ -1,25 +1,6 @@
 import 'package:event_recorder/main.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const PersonalProtection(title: 'Lab Inspection Form'),
-    );
-  }
-}
-
 class PersonalProtection extends StatefulWidget {
   const PersonalProtection({super.key, required this.title});
   final String title;
@@ -38,10 +19,18 @@ class PersonalProtectionState extends State<PersonalProtection> {
       body: Column(
         children: [
           Text("Hazardous Waste Compliance", style: TextStyle(fontSize: 25)),
-          TaskItem(label: "50. Respirators used without proper clearance/fit testing/training"),
-          TaskItem(label: "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
-          TaskItem(label: "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
-          TaskItem(label: "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
+          TaskItem(
+              label:
+                  "50. Respirators used without proper clearance/fit testing/training"),
+          TaskItem(
+              label:
+                  "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
+          TaskItem(
+              label:
+                  "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
+          TaskItem(
+              label:
+                  "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
           //TaskItem(label: ""),
 
           TextFormField(
@@ -135,7 +124,7 @@ class NextButton extends StatelessWidget {
     return TextButton(
       onPressed: () {
         //Navigator.push(context,
-            //MaterialPageRoute(builder: (context) => const 'nextPage'(title: "")));
+        //MaterialPageRoute(builder: (context) => const 'nextPage'(title: "")));
       },
       child: Container(
         color: Colors.blue,
@@ -154,12 +143,10 @@ class Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Row(children: [
-          BackButton(),
-          SizedBox(width: 20),
-          SizedBox(width: 20),
-          NextButton(),
-        ]
-      )
-    );
+      BackButton(),
+      SizedBox(width: 20),
+      SizedBox(width: 20),
+      NextButton(),
+    ]));
   }
 }

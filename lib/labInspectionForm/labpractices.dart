@@ -1,21 +1,9 @@
 import 'package:event_recorder/labInspectionForm/chemicaluse.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LabPractices(title: 'Lab Inspection Form'),
-    );
-  }
-}
+import 'package:event_recorder/labInspectionForm/task_item.dart';
+import 'package:event_recorder/labInspectionForm/confirm_task.dart';
+import 'package:event_recorder/labInspectionForm/comments.dart';
 
 class LabPractices extends StatefulWidget {
   const LabPractices({super.key, required this.title});
@@ -26,6 +14,18 @@ class LabPractices extends StatefulWidget {
 }
 
 class LabPracticesState extends State<LabPractices> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      final String text = controller.text;
+      controller.value = controller.value.copyWith(
+        text: text,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,13 +42,18 @@ class LabPracticesState extends State<LabPractices> {
               Column(
                 children: [
                   Text("Laboratory Practices", style: TextStyle(fontSize: 25)),
-                  TaskItem(label: "22. Gloves are work outside the lab"),
                   TaskItem(
+                      key: Key('1'),
+                      label: "22. Gloves are work outside the lab"),
+                  TaskItem(
+                      key: Key('2'),
                       label:
                           "23. Evidence of personnel eating or drinking in the laboratory"),
                   TaskItem(
+                      key: Key('3'),
                       label: "24. Food items stored with hazardous chemicals"),
                   TaskItem(
+                      key: Key('4'),
                       label:
                           "25. Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators"),
                 ],
@@ -56,7 +61,9 @@ class LabPracticesState extends State<LabPractices> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(),
+                child: Comments(
+                  controller: controller,
+                ),
               ),
               Padding(
                 padding:
@@ -66,12 +73,13 @@ class LabPracticesState extends State<LabPractices> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(),
+                child: UploadPhoto(key: Key('photo lab practices')),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(label: "This page is completed."),
+                child: ConfirmTask(
+                    key: Key('5'), label: "This page is completed."),
               ),
               Padding(
                 padding:
@@ -82,83 +90,6 @@ class LabPracticesState extends State<LabPractices> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  TaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  TaskItemState createState() => TaskItemState();
-}
-
-class TaskItemState extends State<TaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class SubTaskItem extends StatefulWidget {
-  final String label;
-
-  SubTaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  SubTaskItemState createState() => SubTaskItemState();
-}
-
-class SubTaskItemState extends State<SubTaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class ConfirmTask extends StatefulWidget {
-  final String label;
-
-  ConfirmTask({Key? key, required this.label}) : super(key: key);
-
-  @override
-  ConfirmTaskState createState() => ConfirmTaskState();
-}
-
-class ConfirmTaskState extends State<ConfirmTask> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        //SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
@@ -186,12 +117,16 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('next'),
       onPressed: () {
         Navigator.push(
             // will work with LabPractices.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const ChemicalUse(title: "")));
+                builder: (context) => const ChemicalUse(
+                      title: "",
+                      key: Key('chemical use'),
+                    )));
       },
       child: Container(
         color: Colors.blue,
@@ -215,39 +150,5 @@ class Buttons extends StatelessWidget {
       SizedBox(width: 20),
       NextButton(),
     ]));
-  }
-}
-
-class Comments extends StatefulWidget {
-  const Comments({super.key});
-
-  @override
-  CommentsState createState() {
-    return CommentsState();
-  }
-}
-
-class CommentsState extends State<Comments> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextField(
-              key: _formKey,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Comment Box",
-              ),
-              minLines: 1,
-              maxLines: 6,
-            ),
-          ],
-        ));
   }
 }

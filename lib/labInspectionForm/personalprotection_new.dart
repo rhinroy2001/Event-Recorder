@@ -1,21 +1,9 @@
 import 'package:event_recorder/labInspectionForm/signature.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const PersonalProtection(title: 'Lab Inspection Form'),
-    );
-  }
-}
+import 'package:event_recorder/labInspectionForm/task_item.dart';
+import 'package:event_recorder/labInspectionForm/confirm_task.dart';
+import 'package:event_recorder/labInspectionForm/comments.dart';
 
 class PersonalProtection extends StatefulWidget {
   const PersonalProtection({super.key, required this.title});
@@ -26,6 +14,18 @@ class PersonalProtection extends StatefulWidget {
 }
 
 class PersonalProtectionState extends State<PersonalProtection> {
+  TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      final String text = controller.text;
+      controller.value = controller.value.copyWith(
+        text: text,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,15 +43,19 @@ class PersonalProtectionState extends State<PersonalProtection> {
                 children: [
                   Text("Personal Protection", style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      key: Key('1'),
                       label:
                           "50. Respirators used without proper clearance/fit testing/training"),
                   TaskItem(
+                      key: Key('2'),
                       label:
                           "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
                   TaskItem(
+                      key: Key('3'),
                       label:
                           "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
                   TaskItem(
+                      key: Key('4'),
                       label:
                           "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
                   //TaskItem(label: ""),
@@ -60,7 +64,9 @@ class PersonalProtectionState extends State<PersonalProtection> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(),
+                child: Comments(
+                  controller: controller,
+                ),
               ),
               Padding(
                 padding:
@@ -70,12 +76,15 @@ class PersonalProtectionState extends State<PersonalProtection> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(),
+                child: UploadPhoto(
+                  key: Key('photo personal protection'),
+                ),
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(label: "This page is completed."),
+                child: ConfirmTask(
+                    key: Key('5'), label: "This page is completed."),
               ),
               Padding(
                 padding:
@@ -90,87 +99,11 @@ class PersonalProtectionState extends State<PersonalProtection> {
   }
 }
 
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  TaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  TaskItemState createState() => TaskItemState();
-}
-
-class TaskItemState extends State<TaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class SubTaskItem extends StatefulWidget {
-  final String label;
-
-  SubTaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  SubTaskItemState createState() => SubTaskItemState();
-}
-
-class SubTaskItemState extends State<SubTaskItem> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label),
-      ],
-    );
-  }
-}
-
-class ConfirmTask extends StatefulWidget {
-  final String label;
-
-  ConfirmTask({Key? key, required this.label}) : super(key: key);
-
-  @override
-  ConfirmTaskState createState() => ConfirmTaskState();
-}
-
-class ConfirmTaskState extends State<ConfirmTask> {
-  bool? value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        //SizedBox(width: 25),
-        Checkbox(
-            onChanged: (newValue) => setState(() => value = newValue),
-            value: value),
-        Text(widget.label, style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
-    );
-  }
-}
-
 class BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('back'),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -190,11 +123,15 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key('next'),
       onPressed: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const SignatureForm(title: "")));
+                builder: (context) => const SignatureForm(
+                      title: "",
+                      key: Key('signature form'),
+                    )));
       },
       child: Container(
         color: Colors.blue,
@@ -218,39 +155,5 @@ class Buttons extends StatelessWidget {
       SizedBox(width: 20),
       NextButton(),
     ]));
-  }
-}
-
-class Comments extends StatefulWidget {
-  const Comments({super.key});
-
-  @override
-  CommentsState createState() {
-    return CommentsState();
-  }
-}
-
-class CommentsState extends State<Comments> {
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextField(
-              key: _formKey,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Comment Box",
-              ),
-              minLines: 1,
-              maxLines: 6,
-            ),
-          ],
-        ));
   }
 }

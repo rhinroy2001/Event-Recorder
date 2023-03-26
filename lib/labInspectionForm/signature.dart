@@ -9,21 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:event_recorder/labInspectionForm/utility.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Recorder',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SignatureForm(title: 'Lab Inspection Form'),
-    );
-  }
-}
-
 class SignatureForm extends StatefulWidget {
   const SignatureForm({super.key, required this.title});
   final String title;
