@@ -1,13 +1,10 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:event_recorder/labInspectionForm/utility.dart';
+import '../main.dart';
 
 class SignatureForm extends StatefulWidget {
   const SignatureForm({super.key, required this.title});
@@ -214,28 +211,28 @@ class BackButton extends StatelessWidget {
   }
 }
 
-// class NextButton extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextButton(
-//       onPressed: () {
-//         Navigator.push(
-//             // will work with signsPostings.dart
-//             context,
-//             MaterialPageRoute(
-//                 builder: (context) => const (title: "")));
-//       },
-//       child: Container(
-//         color: Colors.blue,
-//         padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
-//         child: const Text(
-//           "Done",
-//           style: TextStyle(color: Colors.white),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class NextButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+            // will work with signsPostings.dart
+            context,
+            MaterialPageRoute(
+                builder: (context) => const MyHomePage(title: "")));
+      },
+      child: Container(
+        color: Colors.blue,
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
+        child: const Text(
+          "Done",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
 
 class Buttons extends StatelessWidget {
   @override
@@ -244,8 +241,8 @@ class Buttons extends StatelessWidget {
         child: Row(children: [
       BackButton(),
       SizedBox(width: 20),
-      // SizedBox(width: 20),
-      // NextButton(),
+      SizedBox(width: 20),
+      NextButton(),
     ]));
   }
 }
