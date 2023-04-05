@@ -6,9 +6,12 @@ import 'package:event_recorder/labInspectionForm/sub_task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class ChemicalHygiene extends StatefulWidget {
-  const ChemicalHygiene({super.key, required this.title});
+  const ChemicalHygiene({super.key, required this.title, required this.data});
   final String title;
+  final Data data;
 
   @override
   State<ChemicalHygiene> createState() => ChemicalHygieneState();
@@ -45,34 +48,42 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
                   Text("Chemical Hygiene Plan and Training Records",
                       style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      isChecked: widget.data.sixteen,
                       key: Key('1'),
                       label: "16. Chemical Hygiene Plan unavailable"),
 
                   TaskItem(
+                      isChecked: widget.data.seventeen,
                       key: Key('2'),
                       label: "17. MSDS's unavailable for lab employees"),
 
                   TaskItem(
+                      isChecked: widget.data.eighteen,
                       key: Key('3'),
                       label:
                           "18. Laboratory Safety and Compliance training outdated"),
                   SubTaskItem(
+                      isChecked: widget.data.eighteenA,
                       key: Key('4'),
                       label:
                           "a. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
                   SubTaskItem(
+                      isChecked: widget.data.eighteenB,
                       key: Key('5'),
                       label:
                           "b. New Employees have not attended safety training"),
 
                   TaskItem(
+                      isChecked: widget.data.nineteen,
                       key: Key('6'),
                       label:
                           "19. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
                   TaskItem(
+                      isChecked: widget.data.twenty,
                       key: Key('7'),
                       label: "20. Chemical inventory unavailable"),
                   TaskItem(
+                      isChecked: widget.data.twentyone,
                       key: Key('8'),
                       label: "21. Previous lab inspection not posted"),
                   //TaskItem(label: ""),
@@ -106,7 +117,7 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
+                child: Buttons(widget.data),
               ),
             ],
           ),
@@ -136,6 +147,8 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
+  NextButton(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -144,10 +157,8 @@ class NextButton extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const LabPractices(
-                      title: "",
-                      key: Key('lab practices'),
-                    )));
+                builder: (context) => LabPractices(
+                    title: "", key: Key('lab practices'), data: data)));
       },
       child: Container(
         color: Colors.blue,
@@ -162,6 +173,8 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
+  Buttons(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -169,7 +182,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(),
+      NextButton(data),
     ]));
   }
 }

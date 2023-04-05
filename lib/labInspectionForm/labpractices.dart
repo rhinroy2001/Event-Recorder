@@ -5,8 +5,11 @@ import 'package:event_recorder/labInspectionForm/task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class LabPractices extends StatefulWidget {
-  const LabPractices({super.key, required this.title});
+  const LabPractices({super.key, required this.title, required this.data});
+  final Data data;
   final String title;
 
   @override
@@ -43,16 +46,20 @@ class LabPracticesState extends State<LabPractices> {
                 children: [
                   Text("Laboratory Practices", style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      isChecked: widget.data.twentytwo,
                       key: Key('1'),
                       label: "22. Gloves are work outside the lab"),
                   TaskItem(
+                      isChecked: widget.data.twentythree,
                       key: Key('2'),
                       label:
                           "23. Evidence of personnel eating or drinking in the laboratory"),
                   TaskItem(
+                      isChecked: widget.data.twentyfour,
                       key: Key('3'),
                       label: "24. Food items stored with hazardous chemicals"),
                   TaskItem(
+                      isChecked: widget.data.twentyfive,
                       key: Key('4'),
                       label:
                           "25. Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators"),
@@ -84,7 +91,7 @@ class LabPracticesState extends State<LabPractices> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
+                child: Buttons(widget.data),
               ),
             ],
           ),
@@ -114,6 +121,8 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
+  NextButton(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -123,10 +132,8 @@ class NextButton extends StatelessWidget {
             // will work with LabPractices.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const ChemicalUse(
-                      title: "",
-                      key: Key('chemical use'),
-                    )));
+                builder: (context) => ChemicalUse(
+                    title: "", key: Key('chemical use'), data: data)));
       },
       child: Container(
         color: Colors.blue,
@@ -141,6 +148,8 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
+  Buttons(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -148,7 +157,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(),
+      NextButton(data),
     ]));
   }
 }

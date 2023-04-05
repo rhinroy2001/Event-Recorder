@@ -5,9 +5,12 @@ import 'package:event_recorder/labInspectionForm/task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class SignsPostings extends StatefulWidget {
-  const SignsPostings({super.key, required this.title});
+  const SignsPostings({super.key, required this.title, required this.data});
   final String title;
+  final Data data;
 
   @override
   State<SignsPostings> createState() => SignsPostingsState();
@@ -43,18 +46,22 @@ class SignsPostingsState extends State<SignsPostings> {
                 children: [
                   Text("Signs and Postings", style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      isChecked: widget.data.twelve,
                       key: Key('1'),
                       label:
                           "12. Lab specific emergency contact list not updated or posted"),
                   TaskItem(
+                      isChecked: widget.data.thirteen,
                       key: Key('2'),
                       label:
                           "13. Emergency Produres not posted by the laboratory phone"),
                   TaskItem(
+                      isChecked: widget.data.fourteen,
                       key: Key('3'),
                       label:
                           "14. Laboratory refrigerators/freezer/microwaves not labeled \"Not for Food Use /\"Not for Flammable Liquid Storage\""),
                   TaskItem(
+                      isChecked: widget.data.fifteen,
                       key: Key('4'),
                       label:
                           "15. Cabinets and/or storage areas not labeled properly"),
@@ -88,7 +95,7 @@ class SignsPostingsState extends State<SignsPostings> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
+                child: Buttons(widget.data),
               ),
             ],
           ),
@@ -118,6 +125,8 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
+  final Data data;
+  NextButton(this.data);
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -127,10 +136,8 @@ class NextButton extends StatelessWidget {
             // will work with signsPostings.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const ChemicalHygiene(
-                      title: "",
-                      key: Key('chemical hygiene'),
-                    )));
+                builder: (context) => ChemicalHygiene(
+                    title: "", key: Key('chemical hygiene'), data: data)));
       },
       child: Container(
         color: Colors.blue,
@@ -145,6 +152,8 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
+  Buttons(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -152,7 +161,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(),
+      NextButton(data),
     ]));
   }
 }

@@ -5,9 +5,13 @@ import 'package:event_recorder/labInspectionForm/task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class PersonalProtection extends StatefulWidget {
-  const PersonalProtection({super.key, required this.title});
+  const PersonalProtection(
+      {super.key, required this.title, required this.data});
   final String title;
+  final Data data;
 
   @override
   State<PersonalProtection> createState() => PersonalProtectionState();
@@ -43,18 +47,22 @@ class PersonalProtectionState extends State<PersonalProtection> {
                 children: [
                   Text("Personal Protection", style: TextStyle(fontSize: 25)),
                   TaskItem(
+                      isChecked: widget.data.fifty,
                       key: Key('1'),
                       label:
                           "50. Respirators used without proper clearance/fit testing/training"),
                   TaskItem(
+                      isChecked: widget.data.fiftyone,
                       key: Key('2'),
                       label:
                           "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
                   TaskItem(
+                      isChecked: widget.data.fiftytwo,
                       key: Key('3'),
                       label:
                           "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
                   TaskItem(
+                      isChecked: widget.data.fiftythree,
                       key: Key('4'),
                       label:
                           "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
@@ -89,7 +97,7 @@ class PersonalProtectionState extends State<PersonalProtection> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
+                child: Buttons(widget.data),
               ),
             ],
           ),
@@ -120,6 +128,8 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
+  NextButton(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -128,10 +138,8 @@ class NextButton extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const SignatureForm(
-                      title: "",
-                      key: Key('signature form'),
-                    )));
+                builder: (context) => SignatureForm(
+                    title: "", key: Key('signature form'), data: data)));
       },
       child: Container(
         color: Colors.blue,
@@ -146,6 +154,8 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
+  Buttons(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -153,7 +163,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(),
+      NextButton(data),
     ]));
   }
 }

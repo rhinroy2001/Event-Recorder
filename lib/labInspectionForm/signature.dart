@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:event_recorder/labInspectionForm/save_btn.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:event_recorder/labInspectionForm/utility.dart';
 
+import 'data.dart';
+
 class SignatureForm extends StatefulWidget {
-  const SignatureForm({super.key, required this.title});
+  const SignatureForm({super.key, required this.title, required this.data});
   final String title;
+  final Data data;
 
   @override
   SignatureState createState() {
@@ -185,7 +189,7 @@ class SignatureState extends State<SignatureForm> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
+                child: Buttons(widget.data),
               ),
             ],
           )
@@ -238,6 +242,8 @@ class BackButton extends StatelessWidget {
 // }
 
 class Buttons extends StatelessWidget {
+  Buttons(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -245,6 +251,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       // SizedBox(width: 20),
+      SaveBtnBuilder(data: data)
       // NextButton(),
     ]));
   }

@@ -5,9 +5,12 @@ import 'package:event_recorder/labInspectionForm/task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class FireSafety extends StatefulWidget {
-  const FireSafety({super.key, required this.title});
+  const FireSafety({super.key, required this.title, required this.data});
   final String title;
+  final Data data;
 
   @override
   State<FireSafety> createState() => FireSafetyState();
@@ -48,47 +51,58 @@ class FireSafetyState extends State<FireSafety> {
                       Text("General Fire Safety and Housekeeping",
                           style: TextStyle(fontSize: 25)),
                       TaskItem(
+                          isChecked: widget.data.one,
                           key: Key('1'),
                           label:
                               "1. Aisles and walkways not free of tripping hazards"),
 
                       TaskItem(
+                          isChecked: widget.data.two,
                           key: Key('2'),
                           label:
                               "2. High shelves and/or cabinet tops have items which may fall and injure someone"),
 
                       TaskItem(
+                          isChecked: widget.data.three,
                           key: Key('3'),
                           label:
                               "3. Empty containers, boxes and broken equipment not promptly discarded"),
                       TaskItem(
+                          isChecked: widget.data.four,
                           key: Key('4'),
                           label:
                               "4. Emergency exit or egress route blocked or poorly accessible"),
                       TaskItem(
+                          isChecked: widget.data.five,
                           key: Key('5'),
                           label:
                               "5. Power cord found in poor condition or not tie wrapped"),
                       TaskItem(
+                          isChecked: widget.data.six,
                           key: Key('6'),
                           label:
                               "6. Energized electric panel uncovered and/or blocked"),
                       TaskItem(
+                          isChecked: widget.data.seven,
                           key: Key('7'),
                           label:
                               "7. Portable elctric heater used in the laboratory"),
                       TaskItem(
+                          isChecked: widget.data.eight,
                           key: Key('8'),
                           label:
                               "8. Failure to remedate non-hazardous chemical release within a timely manner"),
                       TaskItem(
+                          isChecked: widget.data.nine,
                           key: Key('9'),
                           label: "9. Laboratory doors propped open"),
                       TaskItem(
+                          isChecked: widget.data.ten,
                           key: Key('10'),
                           label:
                               "10. Items stored within 18 inches of the ceiling"),
                       TaskItem(
+                          isChecked: widget.data.eleven,
                           key: Key('11'),
                           label:
                               "11. Workers do not use a safe platform for climbing"),
@@ -123,7 +137,7 @@ class FireSafetyState extends State<FireSafety> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
-                    child: Buttons(),
+                    child: Buttons(widget.data),
                   ),
                 ],
               ),
@@ -156,6 +170,8 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
+  NextButton(this.data);
+  final Data data;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -165,10 +181,8 @@ class NextButton extends StatelessWidget {
             // will work with signsPostings.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const SignsPostings(
-                      title: "",
-                      key: Key('signs and postings'),
-                    )));
+                builder: (context) => SignsPostings(
+                    title: "", key: Key('signs and postings'), data: data)));
       },
       child: Container(
         color: Colors.blue,
@@ -183,6 +197,8 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
+  final Data data;
+  Buttons(this.data);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -190,7 +206,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(),
+      NextButton(data)
     ]));
   }
 }

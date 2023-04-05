@@ -46,6 +46,8 @@ dependencies:
   permission_handler: ^10.2.0
   sizer: ^2.0.15
   mockito: ^5.3.2
+  pdf: ^3.8.4
+  printing: ^5.9.3
 
 dev_dependencies:
   url_launcher: ^6.1.8
