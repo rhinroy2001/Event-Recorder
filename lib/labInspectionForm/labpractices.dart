@@ -46,21 +46,17 @@ class LabPracticesState extends State<LabPractices> {
                 children: [
                   Text("Laboratory Practices", style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.twentytwo,
-                      key: Key('1'),
+                      key: Key('22'),
                       label: "22. Gloves are work outside the lab"),
                   TaskItem(
-                      isChecked: widget.data.twentythree,
-                      key: Key('2'),
+                      key: Key('23'),
                       label:
                           "23. Evidence of personnel eating or drinking in the laboratory"),
                   TaskItem(
-                      isChecked: widget.data.twentyfour,
-                      key: Key('3'),
+                      key: Key('24'),
                       label: "24. Food items stored with hazardous chemicals"),
                   TaskItem(
-                      isChecked: widget.data.twentyfive,
-                      key: Key('4'),
+                      key: Key('25'),
                       label:
                           "25. Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators"),
                 ],

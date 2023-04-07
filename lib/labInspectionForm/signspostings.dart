@@ -46,23 +46,19 @@ class SignsPostingsState extends State<SignsPostings> {
                 children: [
                   Text("Signs and Postings", style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.twelve,
-                      key: Key('1'),
+                      key: Key('12'),
                       label:
                           "12. Lab specific emergency contact list not updated or posted"),
                   TaskItem(
-                      isChecked: widget.data.thirteen,
-                      key: Key('2'),
+                      key: Key('13'),
                       label:
                           "13. Emergency Produres not posted by the laboratory phone"),
                   TaskItem(
-                      isChecked: widget.data.fourteen,
-                      key: Key('3'),
+                      key: Key('14'),
                       label:
                           "14. Laboratory refrigerators/freezer/microwaves not labeled \"Not for Food Use /\"Not for Flammable Liquid Storage\""),
                   TaskItem(
-                      isChecked: widget.data.fifteen,
-                      key: Key('4'),
+                      key: Key('15'),
                       label:
                           "15. Cabinets and/or storage areas not labeled properly"),
                 ],

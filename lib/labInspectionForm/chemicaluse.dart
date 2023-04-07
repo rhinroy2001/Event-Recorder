@@ -48,87 +48,65 @@ class ChemicalUseState extends State<ChemicalUse> {
                   Text("Chemical Use and Storage",
                       style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.twentysix,
-                      key: Key('1'),
+                      key: Key('26'),
                       label:
                           "26. Chemicals not properly segregated by hazard class"),
 
                   TaskItem(
-                      isChecked: widget.data.twentyseven,
-                      key: Key('2'),
+                      key: Key('27'),
                       label:
                           "27. High-pressure gas cylinders unsecured, uncapped, or transported unsafely"),
 
                   TaskItem(
-                      isChecked: widget.data.twentyeight,
-                      key: Key('3'),
+                      key: Key('28'),
                       label: "28. Hazardous chemicals stored above eye level"),
 
                   TaskItem(
-                      isChecked: widget.data.twentynine,
-                      key: Key('4'),
+                      key: Key('29'),
                       label:
                           "29. Fume hood used as storage area for hazardous chemicals"),
                   TaskItem(
-                      isChecked: widget.data.thirty,
-                      key: Key('5'),
+                      key: Key('30'),
                       label:
                           "30. Excessive quantities of hazardous chemicals/reagents stored on lab bench top"),
                   TaskItem(
-                      isChecked: widget.data.thirtyone,
-                      key: Key('6'),
+                      key: Key('31'),
                       label:
                           "31. Hazardous chemicals/reagents stored on the floor"),
                   TaskItem(
-                      isChecked: widget.data.thirtytwo,
-                      key: Key('7'),
+                      key: Key('32'),
                       label:
                           "32. Chemicals susceptible to peroxide formation are not dated/expired"),
                   TaskItem(
-                      isChecked: widget.data.thirtythree,
-                      key: Key('8'),
+                      key: Key('33'),
                       label:
                           "33. Chemicals not labeled with the following information:"),
+                  SubTaskItem(key: Key('33a'), label: "a. Full chemical name"),
                   SubTaskItem(
-                      isChecked: widget.data.thirtythreeA,
-                      key: Key('9'),
-                      label: "a. Full chemical name"),
-                  SubTaskItem(
-                      isChecked: widget.data.thirtythreeB,
-                      key: Key('10'),
-                      label: "b. Chemical concentration"),
-                  SubTaskItem(
-                      isChecked: widget.data.thirtythreeC,
-                      key: Key('11'),
-                      label: "c. Hazard class"),
+                      key: Key('33b'), label: "b. Chemical concentration"),
+                  SubTaskItem(key: Key('33c'), label: "c. Hazard class"),
                   TaskItem(
-                      isChecked: widget.data.thirtyfour,
-                      key: Key('12'),
+                      key: Key('34'),
                       label:
                           "34. Storing an uncapped chemical container or allowing a chemical liquid to evaporate inside or outside the fume hood"),
                   TaskItem(
-                      isChecked: widget.data.thirtyfive,
-                      key: Key('13'),
+                      key: Key('35'),
                       label:
                           "35. Flammable liquids not stored in flammable storage cabinet"),
                   TaskItem(
-                      isChecked: widget.data.thirtysix,
-                      key: Key('14'),
+                      key: Key('36'),
                       label:
                           "36. Flammable storage cabinets not located in safe area"),
                   TaskItem(
-                      isChecked: widget.data.thirtyseven,
-                      key: Key('15'),
+                      key: Key('37'),
                       label:
                           "37. Excessive quantities of flammable liquids present"),
                   TaskItem(
-                      isChecked: widget.data.thirtyeight,
-                      key: Key('16'),
+                      key: Key('38'),
                       label:
                           "38. Flammable liquids are stored in non-explosion-proof/non-flammable-proof refrigerator"),
                   TaskItem(
-                      isChecked: widget.data.thirtynine,
-                      key: Key('17'),
+                      key: Key('39'),
                       label:
                           "39. Unattended chemicals not secured against unauthorized access"),
                   //TaskItem(label: ""),

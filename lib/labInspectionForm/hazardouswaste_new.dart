@@ -48,75 +48,57 @@ class HazardousWasteState extends State<HazardousWaste> {
                   Text("Hazardous Waste Compliance",
                       style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.fortysix,
-                      key: Key('1'),
+                      key: Key('46'),
                       label: "46. Hazardous Chemical Waste Labeling"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysixA,
-                      key: Key('2'),
+                      key: Key('46a'),
                       label:
                           "a. Not labeled \"Waste\"  or \"Hazardous Waste\""),
                   SubTaskItem(
-                      isChecked: widget.data.fortysixB,
-                      key: Key('3'),
+                      key: Key('46b'),
                       label: "b. All chemical components not listed"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysixC,
-                      key: Key('4'),
-                      label: "c. No accumulation start date"),
+                      key: Key('46c'), label: "c. No accumulation start date"),
                   TaskItem(
-                      isChecked: widget.data.fortyseven,
-                      key: Key('5'),
+                      key: Key('47'),
                       label: "47. Hazardous Chemical Waste Storage"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysevenA,
-                      key: Key('6'),
+                      key: Key('47a'),
                       label: "a. Not segrated by hazard class"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysevenB,
-                      key: Key('7'),
+                      key: Key('47b'),
                       label:
                           "b. Greater than one container per chemical waste stream"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysevenC,
-                      key: Key('8'),
+                      key: Key('47c'),
                       label:
                           "c. Excessive amounts of hazardous wastes accumulated (chemical. biological, radioactive)"),
                   SubTaskItem(
-                      isChecked: widget.data.fortysevenD,
-                      key: Key('9'),
+                      key: Key('47d'),
                       label:
                           "d. Accumulation start date greater than one year"),
                   TaskItem(
-                      isChecked: widget.data.fortyeight,
-                      key: Key('10'),
+                      key: Key('48'),
                       label: "48. Sharps, Broken Glass, Empty Containers:"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyeightA,
-                      key: Key('11'),
+                      key: Key('48a'),
                       label:
                           "a. Sharps containers not used or disposed of improperly"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyeightB,
-                      key: Key('12'),
+                      key: Key('48b'),
                       label: "b. Broken Glass not placed in proper receptacle"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyeightC,
-                      key: Key('13'),
+                      key: Key('48c'),
                       label:
                           "c. Failed to triple rinse and remove/mark out labels of empty chemical containers"),
                   TaskItem(
-                      isChecked: widget.data.fortynine,
-                      key: Key('14'),
-                      label: "49. Mercury/Chemical Spills:"),
+                      key: Key('49'), label: "49. Mercury/Chemical Spills:"),
                   SubTaskItem(
-                      isChecked: widget.data.fortynineA,
-                      key: Key('15'),
+                      key: Key('49a'),
                       label:
                           "a. Broken mercury thermometer not contained or labeled"),
                   SubTaskItem(
-                      isChecked: widget.data.fortynineB,
-                      key: Key('16'),
+                      key: Key('49b'),
                       label:
                           "b. Failure to promptly report a mercury/ chemical release"),
                   //TaskItem(label: ""),

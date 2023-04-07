@@ -47,23 +47,19 @@ class PersonalProtectionState extends State<PersonalProtection> {
                 children: [
                   Text("Personal Protection", style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.fifty,
-                      key: Key('1'),
+                      key: Key('50'),
                       label:
                           "50. Respirators used without proper clearance/fit testing/training"),
                   TaskItem(
-                      isChecked: widget.data.fiftyone,
-                      key: Key('2'),
+                      key: Key('51'),
                       label:
                           "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
                   TaskItem(
-                      isChecked: widget.data.fiftytwo,
-                      key: Key('3'),
+                      key: Key('52'),
                       label:
                           "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
                   TaskItem(
-                      isChecked: widget.data.fiftythree,
-                      key: Key('4'),
+                      key: Key('53'),
                       label:
                           "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
                   //TaskItem(label: ""),

@@ -48,43 +48,35 @@ class ChemicalHygieneState extends State<ChemicalHygiene> {
                   Text("Chemical Hygiene Plan and Training Records",
                       style: TextStyle(fontSize: 25)),
                   TaskItem(
-                      isChecked: widget.data.sixteen,
-                      key: Key('1'),
+                      key: Key('16'),
                       label: "16. Chemical Hygiene Plan unavailable"),
 
                   TaskItem(
-                      isChecked: widget.data.seventeen,
-                      key: Key('2'),
+                      key: Key('17'),
                       label: "17. MSDS's unavailable for lab employees"),
 
                   TaskItem(
-                      isChecked: widget.data.eighteen,
-                      key: Key('3'),
+                      key: Key('18'),
                       label:
                           "18. Laboratory Safety and Compliance training outdated"),
                   SubTaskItem(
-                      isChecked: widget.data.eighteenA,
-                      key: Key('4'),
+                      key: Key('18a'),
                       label:
                           "a. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
                   SubTaskItem(
-                      isChecked: widget.data.eighteenB,
-                      key: Key('5'),
+                      key: Key('18b'),
                       label:
                           "b. New Employees have not attended safety training"),
 
                   TaskItem(
-                      isChecked: widget.data.nineteen,
-                      key: Key('6'),
+                      key: Key('19'),
                       label:
                           "19. Annual Lab Specific Training Outline unavailable and/or attendance not documented"),
                   TaskItem(
-                      isChecked: widget.data.twenty,
-                      key: Key('7'),
+                      key: Key('20'),
                       label: "20. Chemical inventory unavailable"),
                   TaskItem(
-                      isChecked: widget.data.twentyone,
-                      key: Key('8'),
+                      key: Key('21'),
                       label: "21. Previous lab inspection not posted"),
                   //TaskItem(label: ""),
                 ],

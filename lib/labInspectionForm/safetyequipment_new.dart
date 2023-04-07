@@ -47,66 +47,45 @@ class SafetyEquipmentState extends State<SafetyEquipment> {
                 children: [
                   Text("Safety Equipment and Engineering Controls",
                       style: TextStyle(fontSize: 25)),
-                  TaskItem(
-                      isChecked: widget.data.forty,
-                      key: Key('1'),
-                      label: "40. Eye Wash Station"),
+                  TaskItem(key: Key('40'), label: "40. Eye Wash Station"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyA,
-                      key: Key('2'),
+                      key: Key('40a'),
                       label: "a. Unavailable or not accessible/blocked"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyB,
-                      key: Key('3'),
+                      key: Key('40b'),
                       label: "b. Weekly inspection not documented"),
                   TaskItem(
-                      isChecked: widget.data.fortyone,
-                      key: Key('4'),
+                      key: Key('41'),
                       label: "41. Safety shower unavailable or not accessible"),
                   TaskItem(
-                      isChecked: widget.data.fortytwo,
-                      key: Key('5'),
+                      key: Key('42'),
                       label:
                           "42. First aid kit location not known and/or not available"),
                   TaskItem(
-                      isChecked: widget.data.fortythree,
-                      key: Key('6'),
+                      key: Key('43'),
                       label:
                           "43. Fire extinguisher not readily accessible and/or inspected"),
-                  TaskItem(
-                      isChecked: widget.data.fortyfour,
-                      key: Key('7'),
-                      label: "44. Fume Hood"),
+                  TaskItem(key: Key('44'), label: "44. Fume Hood"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfourA,
-                      key: Key('8'),
+                      key: Key('44a'),
                       label:
                           "a. Unavailable or not used when handling hazardous chemicals"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfourB,
-                      key: Key('9'),
-                      label: "b. Not inspected annaually"),
+                      key: Key('44b'), label: "b. Not inspected annaually"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfourC,
-                      key: Key('10'),
+                      key: Key('44c'),
                       label:
                           "c. Chemical containers not capped or in poor condition"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfourD,
-                      key: Key('11'),
+                      key: Key('44d'),
                       label: "d. Performance impeded by overcrowding"),
-                  TaskItem(
-                      isChecked: widget.data.fortyfive,
-                      key: Key('12'),
-                      label: "45. Vacuum System"),
+                  TaskItem(key: Key('45'), label: "45. Vacuum System"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfiveA,
-                      key: Key('13'),
+                      key: Key('45a'),
                       label:
                           "a. In-house vacuum system not adequately protected"),
                   SubTaskItem(
-                      isChecked: widget.data.fortyfiveB,
-                      key: Key('14'),
+                      key: Key('45b'),
                       label:
                           "b. Vacuum system flask not labeled and protected"),
                   //TaskItem(label: ""),

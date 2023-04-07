@@ -13,17 +13,12 @@ class GeneralInfo extends StatefulWidget {
 }
 
 class GeneralInfoState extends State<GeneralInfo> {
-  Data composeData() {
-    var data = Data(faculty, date, room, inspector, department, phone);
-    return data;
-  }
-
-  TextEditingController dateController = TextEditingController();
-  TextEditingController facultyController = TextEditingController();
-  TextEditingController roomController = TextEditingController();
-  TextEditingController inspectorController = TextEditingController();
-  TextEditingController departmentController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  late TextEditingController dateController;
+  late TextEditingController facultyController;
+  late TextEditingController roomController;
+  late TextEditingController inspectorController;
+  late TextEditingController departmentController;
+  late TextEditingController phoneController;
   String date = "";
   String faculty = "";
   String room = "";
@@ -32,43 +27,45 @@ class GeneralInfoState extends State<GeneralInfo> {
   String phone = "";
 
   @override
-  @override
   void initState() {
-    super.initState();
-
+    dateController = TextEditingController(text: "");
+    facultyController = TextEditingController(text: "");
+    roomController = TextEditingController(text: "");
+    inspectorController = TextEditingController(text: "");
+    departmentController = TextEditingController(text: "");
+    phoneController = TextEditingController(text: "");
     dateController.addListener(listenDate);
     facultyController.addListener(listenFaculty);
     roomController.addListener(listenRoom);
     inspectorController.addListener(listenInspector);
     departmentController.addListener(listenDepartment);
     phoneController.addListener(listenPhone);
+    super.initState();
   }
 
   void listenDate() {
-    date = dateController.text;
+    data.date = dateController.text;
   }
 
   void listenFaculty() {
-    faculty = facultyController.text;
+    data.faculty = facultyController.text;
   }
 
   void listenRoom() {
-    room = roomController.text;
+    data.room = roomController.text;
   }
 
   void listenInspector() {
-    inspector = inspectorController.text;
+    data.inspector = inspectorController.text;
   }
 
   void listenDepartment() {
-    department = departmentController.text;
+    data.department = departmentController.text;
   }
 
   void listenPhone() {
-    phone = phoneController.text;
+    data.phone = phoneController.text;
   }
-
-  late var data = Data(faculty, date, room, inspector, department, phone);
 
   @override
   Widget build(BuildContext context) {

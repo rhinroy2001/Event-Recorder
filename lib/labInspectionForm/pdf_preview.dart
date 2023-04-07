@@ -15,23 +15,20 @@ class PdfPreviewPage extends StatelessWidget {
 
   Future<Uint8List> printDoc(Data data, PdfPageFormat format) async {
     final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
-    final font = await PdfGoogleFonts.nunitoSansExtraLight();
+    final font = await PdfGoogleFonts.nunitoExtraLight();
     pdf.addPage(pw.Page(
         pageFormat: format,
         build: (context) {
           return buildPrintableData(data, font);
         }));
     return pdf.save();
-    // await Printing.layoutPdf(
-    //     onLayout: (PdfPageFormat format) async => pdf.save());
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: PdfPreview(build: (format) => printDoc(data, format)),
-    ));
+    );
   }
 }

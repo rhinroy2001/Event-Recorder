@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
+
 class Data {
-  String faculty;
-  String date;
-  String room;
-  String inspector;
-  String department;
-  String phone;
+  static final Data _data = Data._internal();
+  String faculty = "";
+  String date = "";
+  String room = "";
+  String inspector = "";
+  String department = "";
+  String phone = "";
   bool one = false;
   bool two = false;
   bool three = false;
@@ -84,12 +87,13 @@ class Data {
   bool fiftytwo = false;
   bool fiftythree = false;
 
-  Data(
-    this.faculty,
-    this.date,
-    this.room,
-    this.inspector,
-    this.department,
-    this.phone,
-  );
+  // Data(this.faculty, this.date, this.room, this.inspector, this.department,
+  //     this.phone);
+  factory Data() {
+    return _data;
+  }
+
+  Data._internal();
 }
+
+final data = Data();
