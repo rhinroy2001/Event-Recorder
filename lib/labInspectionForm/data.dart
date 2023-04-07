@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 
 class Data {
   static final Data _data = Data._internal();
+  TextEditingController fireSafetyController = TextEditingController();
+  TextEditingController signsAndPostingsController = TextEditingController();
+  TextEditingController chemicalHygieneController = TextEditingController();
+  TextEditingController labPracticesController = TextEditingController();
+  TextEditingController chemicalUseController = TextEditingController();
+  TextEditingController safetyEquipmentController = TextEditingController();
+  TextEditingController hazardousWasteController = TextEditingController();
+  TextEditingController personalProtectionController = TextEditingController();
   String faculty = "";
   String date = "";
   String room = "";
   String inspector = "";
   String department = "";
   String phone = "";
+  String commentsFireSafety = "";
+  String commentsSignsAndPostings = "";
+  String commentsChemicalHygiene = "";
+  String commentsLabPractices = "";
+  String commentsChemicalUse = "";
+  String commentsSafetyEquipment = "";
+  String commentsHazardousWaste = "";
+  String commentsPersonalProtection = "";
   bool one = false;
   bool two = false;
   bool three = false;

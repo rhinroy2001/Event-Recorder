@@ -1,7 +1,7 @@
 import 'package:event_recorder/labInspectionForm/pdf_preview.dart';
 import 'package:flutter/material.dart';
 import 'data.dart';
-import 'printable_data.dart';
+import 'printable_data_one.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;

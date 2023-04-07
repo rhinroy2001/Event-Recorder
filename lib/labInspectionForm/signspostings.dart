@@ -21,79 +21,86 @@ class SignsPostingsState extends State<SignsPostings> {
   @override
   void initState() {
     super.initState();
-    controller.addListener(() {
-      final String text = controller.text;
-      controller.value = controller.value.copyWith(
-        text: text,
-      );
+    data.signsAndPostingsController.addListener(() {
+      data.commentsSignsAndPostings = data.signsAndPostingsController.text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lab Inspection Form"),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //body:
-              Column(
-                children: [
-                  Text("Signs and Postings", style: TextStyle(fontSize: 25)),
-                  TaskItem(
-                      key: Key('12'),
-                      label:
-                          "12. Lab specific emergency contact list not updated or posted"),
-                  TaskItem(
-                      key: Key('13'),
-                      label:
-                          "13. Emergency Produres not posted by the laboratory phone"),
-                  TaskItem(
-                      key: Key('14'),
-                      label:
-                          "14. Laboratory refrigerators/freezer/microwaves not labeled \"Not for Food Use /\"Not for Flammable Liquid Storage\""),
-                  TaskItem(
-                      key: Key('15'),
-                      label:
-                          "15. Cabinets and/or storage areas not labeled properly"),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(
-                  controller: controller,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lab Inspection Form"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //body:
+                Column(
+                  children: [
+                    Text("Signs and Postings", style: TextStyle(fontSize: 25)),
+                    TaskItem(
+                        key: Key('12'),
+                        label:
+                            "12. Lab specific emergency contact list not updated or posted"),
+                    TaskItem(
+                        key: Key('13'),
+                        label:
+                            "13. Emergency Produres not posted by the laboratory phone"),
+                    TaskItem(
+                        key: Key('14'),
+                        label:
+                            "14. Laboratory refrigerators/freezer/microwaves not labeled \"Not for Food Use /\"Not for Flammable Liquid Storage\""),
+                    TaskItem(
+                        key: Key('15'),
+                        label:
+                            "15. Cabinets and/or storage areas not labeled properly"),
+                  ],
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text('Take Photo'),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(key: Key('photo signs and postings')),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(
-                  label: "This page is completed.",
-                  key: Key('5'),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Comments(
+                    key: Key("signsandpostings"),
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(widget.data),
-              ),
-            ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Text('Take Photo'),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: UploadPhoto(key: Key('photo signs and postings')),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConfirmTask(
+                    label: "This page is completed.",
+                    key: Key('5'),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Buttons(widget.data),
+                ),
+              ],
+            ),
           ),
         ),
       ),

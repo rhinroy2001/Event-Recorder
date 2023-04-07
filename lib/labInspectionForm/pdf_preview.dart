@@ -1,4 +1,5 @@
-import 'package:event_recorder/labInspectionForm/printable_data.dart';
+import 'package:event_recorder/labInspectionForm/printable_data_one.dart';
+import 'package:event_recorder/labInspectionForm/printable_data_two.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
@@ -16,11 +17,8 @@ class PdfPreviewPage extends StatelessWidget {
   Future<Uint8List> printDoc(Data data, PdfPageFormat format) async {
     final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
     final font = await PdfGoogleFonts.nunitoExtraLight();
-    pdf.addPage(pw.Page(
-        pageFormat: format,
-        build: (context) {
-          return buildPrintableData(data, font);
-        }));
+    final widgets = buildPrintableDataPageOne(data, font);
+    pdf.addPage(pw.MultiPage(pageFormat: format, build: (context) => widgets));
     return pdf.save();
   }
 

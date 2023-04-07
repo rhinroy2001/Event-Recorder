@@ -22,80 +22,87 @@ class PersonalProtectionState extends State<PersonalProtection> {
   @override
   void initState() {
     super.initState();
-    controller.addListener(() {
-      final String text = controller.text;
-      controller.value = controller.value.copyWith(
-        text: text,
-      );
+    data.personalProtectionController.addListener(() {
+      data.commentsPersonalProtection = data.personalProtectionController.text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lab Inspection Form"),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //body:
-              Column(
-                children: [
-                  Text("Personal Protection", style: TextStyle(fontSize: 25)),
-                  TaskItem(
-                      key: Key('50'),
-                      label:
-                          "50. Respirators used without proper clearance/fit testing/training"),
-                  TaskItem(
-                      key: Key('51'),
-                      label:
-                          "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
-                  TaskItem(
-                      key: Key('52'),
-                      label:
-                          "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
-                  TaskItem(
-                      key: Key('53'),
-                      label:
-                          "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
-                  //TaskItem(label: ""),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(
-                  controller: controller,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lab Inspection Form"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //body:
+                Column(
+                  children: [
+                    Text("Personal Protection", style: TextStyle(fontSize: 25)),
+                    TaskItem(
+                        key: Key('50'),
+                        label:
+                            "50. Respirators used without proper clearance/fit testing/training"),
+                    TaskItem(
+                        key: Key('51'),
+                        label:
+                            "51. Personal protective equipment (e.g., gloves, safety glasses, lab coat) unavailable quantity"),
+                    TaskItem(
+                        key: Key('52'),
+                        label:
+                            "52. Gloves, safety glasses, or other protective equipment not worn while working with hazardous chemicals/reagents"),
+                    TaskItem(
+                        key: Key('53'),
+                        label:
+                            "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory"),
+                    //TaskItem(label: ""),
+                  ],
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text('Take Photo'),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(
-                  key: Key('photo personal protection'),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Comments(
+                    key: Key("personalprotection"),
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(
-                    key: Key('5'), label: "This page is completed."),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(widget.data),
-              ),
-            ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Text('Take Photo'),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: UploadPhoto(
+                    key: Key('photo personal protection'),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConfirmTask(
+                      key: Key('5'), label: "This page is completed."),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Buttons(widget.data),
+                ),
+              ],
+            ),
           ),
         ),
       ),
