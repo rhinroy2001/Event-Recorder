@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Data {
   static final Data _data = Data._internal();
+  //List<String> imageUrls = [];
+  List<Uint8List> imageAsBytesList = [];
   TextEditingController fireSafetyController = TextEditingController();
   TextEditingController signsAndPostingsController = TextEditingController();
   TextEditingController chemicalHygieneController = TextEditingController();

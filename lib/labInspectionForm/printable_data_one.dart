@@ -1,7 +1,12 @@
 import 'package:event_recorder/labInspectionForm/data.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:flutter/material.dart';
 
 List<pw.Widget> buildPrintableDataPageOne(Data data, var font) {
+  final ref = FirebaseStorage.instance.ref();
   List<pw.Widget> widgets = [];
   widgets.add(pw.Center(
       child: pw.Text(
@@ -687,5 +692,14 @@ List<pw.Widget> buildPrintableDataPageOne(Data data, var font) {
       pw.Text(data.commentsHazardousWaste, style: pw.TextStyle(font: font)));
   widgets.add(pw.Text(data.commentsPersonalProtection,
       style: pw.TextStyle(font: font)));
+  widgets.add(pw.SizedBox(height: 50));
+  widgets.add(pw.Text("PHOTOS", style: pw.TextStyle(font: font)));
+  //getImages(data.imageUrls);
+  //print(data.imageUrls.length);
+  print(data.imageAsBytesList.length);
+  for (int i = 0; i < data.imageAsBytesList.length; i++) {
+    widgets.add(pw.Image(pw.MemoryImage(data.imageAsBytesList.elementAt(i)),
+        height: 200, width: 200));
+  }
   return widgets;
 }

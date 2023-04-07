@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
+import 'data.dart';
 
 class UploadPhoto extends StatefulWidget {
   const UploadPhoto({super.key});
@@ -18,9 +20,7 @@ class UploadPhoto extends StatefulWidget {
 class UploadPhotoState extends State<UploadPhoto> {
   // void _setImageFileListFromFile(XFile? value) {
   //   _imageFileList = value == null ? null : <XFile>[value];
-  // }
-
-  String imageUrl = 'https://i.imgur.com/sUFH1Aq.png';
+  // }R
 
   Future<void> _onImageButtonPressed(ImageSource source) async {
     final firebaseStorage = FirebaseStorage.instance;
@@ -38,11 +38,14 @@ class UploadPhotoState extends State<UploadPhoto> {
       var snapshot =
           await firebaseStorage.ref().child('uploads/$fileName').putFile(file);
       var downloadUrl = await snapshot.ref.getDownloadURL();
-      setState(() {
-        imageUrl = downloadUrl;
-      });
-    } else {
-      print('No image path received');
+      Uint8List bytes =
+          (await NetworkAssetBundle(Uri.parse(downloadUrl)).load(downloadUrl))
+              .buffer
+              .asUint8List();
+      data.imageAsBytesList.add(bytes);
+      // setState(() {
+      //   imageUrl = downloadUrl;
+      // });
     }
   }
 

@@ -1,5 +1,4 @@
 import 'package:event_recorder/labInspectionForm/printable_data_one.dart';
-import 'package:event_recorder/labInspectionForm/printable_data_two.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
