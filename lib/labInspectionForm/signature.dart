@@ -1,18 +1,15 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:event_recorder/labInspectionForm/pdf_preview.dart';
 import 'package:event_recorder/labInspectionForm/save_btn.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:event_recorder/labInspectionForm/utility.dart';
 import 'package:image/image.dart' as IMG;
 import 'data.dart';
+import '../main.dart';
 
 class SignatureForm extends StatefulWidget {
   const SignatureForm({super.key, required this.title});
