@@ -1,9 +1,14 @@
 import 'dart:developer';
+import 'package:event_recorder/labInspectionForm/pdf_preview.dart';
+import 'package:event_recorder/labInspectionForm/save_btn.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:signature/signature.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:event_recorder/labInspectionForm/utility.dart';
+import 'package:image/image.dart' as IMG;
+import 'data.dart';
 import '../main.dart';
 
 class SignatureForm extends StatefulWidget {
@@ -22,7 +27,7 @@ class SignatureState extends State<SignatureForm> {
   final SignatureController _controller = SignatureController(
     penStrokeWidth: 5,
     penColor: Colors.black,
-    exportBackgroundColor: Colors.blue,
+    exportBackgroundColor: Colors.white,
     onDrawStart: () => log('onDrawStart called'),
     onDrawEnd: () => log('onDrawEnd called'),
   );
@@ -40,8 +45,6 @@ class SignatureState extends State<SignatureForm> {
   }
 
   Future<void> exportImage(BuildContext context) async {
-    final firebaseStorage = FirebaseStorage.instance;
-    String signatureUrl = '';
     if (_controller.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         key: Key('snackbarPNG'),
@@ -50,18 +53,17 @@ class SignatureState extends State<SignatureForm> {
       return;
     }
 
-    var image = await _controller.toPngBytes(height: 1000, width: 1000);
+    var image = await _controller.toPngBytes();
     if (image == null) {
       return;
     }
     if (!mounted) return;
 
-    var snapshot =
-        await firebaseStorage.ref().child('signature').putData(image);
-    var downloadUrl = await snapshot.ref.getDownloadURL();
-    setState(() {
-      signatureUrl = downloadUrl;
-    });
+    IMG.Image? img = IMG.decodeImage(image);
+    IMG.Image resized = IMG.copyResize(img!, width: 200, height: 100);
+    Uint8List resizedImg = Uint8List.fromList(IMG.encodePng(resized));
+
+    data.signature = resizedImg;
   }
 
   Future<void> exportSVG(BuildContext context) async {
@@ -112,71 +114,82 @@ class SignatureState extends State<SignatureForm> {
           Form(
               key: _formKey,
               child: OrientationBuilder(builder: (context, orientation) {
-                return Signature(
-                  controller: _controller,
-                  key: const Key('signature'),
+                return Container(
                   width: orientation == Orientation.portrait
                       ? width / 1.05
                       : width / 1.05,
                   height: orientation == Orientation.portrait
                       ? height / 2
                       : height / 2,
-                  backgroundColor: Colors.lightBlueAccent,
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black)),
+                  child: Signature(
+                    controller: _controller,
+                    key: const Key('signature'),
+                    width: orientation == Orientation.portrait
+                        ? width / 1.05
+                        : width / 1.05,
+                    height: orientation == Orientation.portrait
+                        ? height / 2
+                        : height / 2,
+                    backgroundColor: Colors.lightBlueAccent,
+                  ),
                 );
-              }
-                  // child: orientation == Orientation.portrait
-                  //     ? Signature(
-                  //         key: const Key('signature'),
-                  //         controller: _controller,
-                  //         width: width / 1.05,
-                  //         height: height / 2,
-                  //         backgroundColor: Colors.lightBlueAccent,
-                  //       )
-                  //     : Signature(
-                  //         key: const Key('signature'),
-                  //         controller: _controller,
-                  //         width: width / 1.05,
-                  //         height: height / 2,
-                  //         backgroundColor: Colors.lightBlueAccent,
-                  //       ),
-                  )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              IconButton(
-                key: const Key('exportPNG'),
-                icon: const Icon(Icons.image),
-                color: Colors.blue,
-                onPressed: () => exportImage(context),
-                tooltip: 'Export Image',
+              })),
+          OrientationBuilder(builder: ((context, orientation) {
+            return Container(
+              width: orientation == Orientation.portrait
+                  ? width / 1.05
+                  : width / 1.05,
+              color: Colors.black,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  IconButton(
+                    key: const Key('clear'),
+                    icon: const Icon(Icons.clear),
+                    color: Colors.blue,
+                    onPressed: () {
+                      setState(() => _controller.clear());
+                    },
+                    tooltip: 'Clear',
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.undo),
+                    color: Colors.blue,
+                    onPressed: () {
+                      setState(() => _controller.undo());
+                    },
+                    tooltip: 'Undo',
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.redo),
+                    color: Colors.blue,
+                    onPressed: () {
+                      setState(() => _controller.redo());
+                    },
+                  ),
+                  IconButton(
+                    key: const Key('exportPNG'),
+                    icon: const Icon(Icons.check),
+                    color: Colors.blue,
+                    onPressed: () {
+                      exportImage(context);
+                      if (_controller.isNotEmpty) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PdfPreviewPage(title: "PDF Preview")));
+                      }
+                    },
+                    tooltip: 'Export Image',
+                  )
+                ],
               ),
-              IconButton(
-                icon: const Icon(Icons.undo),
-                color: Colors.blue,
-                onPressed: () {
-                  setState(() => _controller.undo());
-                },
-                tooltip: 'Undo',
-              ),
-              IconButton(
-                icon: const Icon(Icons.redo),
-                color: Colors.blue,
-                onPressed: () {
-                  setState(() => _controller.redo());
-                },
-              ),
-              IconButton(
-                key: const Key('clear'),
-                icon: const Icon(Icons.clear),
-                color: Colors.blue,
-                onPressed: () {
-                  setState(() => _controller.clear());
-                },
-                tooltip: 'Clear',
-              )
-            ],
-          ),
+            );
+          })),
           Column(
             children: [
               Padding(
@@ -211,38 +224,39 @@ class BackButton extends StatelessWidget {
   }
 }
 
-class NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Navigator.push(
-            // will work with signsPostings.dart
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MyHomePage(title: "")));
-      },
-      child: Container(
-        color: Colors.blue,
-        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
-        child: const Text(
-          "Done",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-    );
-  }
-}
+// class NextButton extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: () {
+//         Navigator.push(
+//             // will work with signsPostings.dart
+//             context,
+//             MaterialPageRoute(builder: (context) => const PdfPreviewButton()));
+//       },
+//       child: Container(
+//         color: Colors.blue,
+//         padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
+//         child: const Text(
+//           "Done",
+//           style: TextStyle(color: Colors.white),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class Buttons extends StatelessWidget {
+  Buttons();
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Row(children: [
       BackButton(),
       SizedBox(width: 20),
-      SizedBox(width: 20),
-      NextButton(),
+      // SizedBox(width: 20),
+      //SaveBtnBuilder()
+      // NextButton(),
     ]));
   }
 }

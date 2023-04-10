@@ -1,3 +1,4 @@
+import 'package:event_recorder/labInspectionForm/data.dart';
 import 'package:event_recorder/labInspectionForm/firesafety.dart';
 import 'package:event_recorder/labInspectionForm/uploadphoto.dart';
 import 'package:event_recorder/personalProtection.dart';
@@ -12,91 +13,162 @@ class GeneralInfo extends StatefulWidget {
 }
 
 class GeneralInfoState extends State<GeneralInfo> {
+  late TextEditingController dateController;
+  late TextEditingController facultyController;
+  late TextEditingController roomController;
+  late TextEditingController inspectorController;
+  late TextEditingController departmentController;
+  late TextEditingController phoneController;
+  String date = "";
+  String faculty = "";
+  String room = "";
+  String inspector = "";
+  String department = "";
+  String phone = "";
+
+  @override
+  void initState() {
+    dateController = TextEditingController(text: "");
+    facultyController = TextEditingController(text: "");
+    roomController = TextEditingController(text: "");
+    inspectorController = TextEditingController(text: "");
+    departmentController = TextEditingController(text: "");
+    phoneController = TextEditingController(text: "");
+    dateController.addListener(listenDate);
+    facultyController.addListener(listenFaculty);
+    roomController.addListener(listenRoom);
+    inspectorController.addListener(listenInspector);
+    departmentController.addListener(listenDepartment);
+    phoneController.addListener(listenPhone);
+    super.initState();
+  }
+
+  void listenDate() {
+    data.date = dateController.text;
+  }
+
+  void listenFaculty() {
+    data.faculty = facultyController.text;
+  }
+
+  void listenRoom() {
+    data.room = roomController.text;
+  }
+
+  void listenInspector() {
+    data.inspector = inspectorController.text;
+  }
+
+  void listenDepartment() {
+    data.department = departmentController.text;
+  }
+
+  void listenPhone() {
+    data.phone = phoneController.text;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lab Inspection Form"),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child:
-                    Text("General Information", style: TextStyle(fontSize: 25)),
-              ),
-              TextFormField(
-                key: Key('date'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Date',
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lab Inspection Form"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text("General Information",
+                      style: TextStyle(fontSize: 25)),
                 ),
-              ),
-              TextFormField(
-                key: Key('faculty'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Faculty',
+                TextFormField(
+                  controller: dateController,
+                  key: Key('date'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Date',
+                  ),
                 ),
-              ),
-              TextFormField(
-                key: Key('buildingRoom'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Building Room',
+                TextFormField(
+                  controller: facultyController,
+                  key: Key('faculty'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Faculty',
+                  ),
                 ),
-              ),
-              TextFormField(
-                key: Key('departmentDivision'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Department Division',
+                TextFormField(
+                  controller: roomController,
+                  key: Key('buildingRoom'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Building Room',
+                  ),
                 ),
-              ),
-              TextFormField(
-                key: Key('inspector'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Inspector',
+                TextFormField(
+                  controller: departmentController,
+                  key: Key('departmentDivision'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Department Division',
+                  ),
                 ),
-              ),
-              TextFormField(
-                key: Key('phone'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Phone',
+                TextFormField(
+                  controller: inspectorController,
+                  key: Key('inspector'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Inspector',
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Text('Take Photo'),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                child: UploadPhoto(),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(
-                    key: Key('confirm'), label: "This page is completed."),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
-              ),
-            ],
+                TextFormField(
+                  controller: phoneController,
+                  key: Key('phone'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Phone',
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Text('Take Photo'),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  child: UploadPhoto(),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConfirmTask(
+                      key: Key('confirm'), label: "This page is completed."),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Buttons(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -135,7 +207,7 @@ class NextButton extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    const FireSafety(key: Key('fire safety'), title: "")));
+                    FireSafety(key: Key('fire safety'), title: "")));
       },
       child: Container(
         color: Colors.blue,

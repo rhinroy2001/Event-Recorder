@@ -5,8 +5,11 @@ import 'package:event_recorder/labInspectionForm/task_item.dart';
 import 'package:event_recorder/labInspectionForm/confirm_task.dart';
 import 'package:event_recorder/labInspectionForm/comments.dart';
 
+import 'data.dart';
+
 class LabPractices extends StatefulWidget {
   const LabPractices({super.key, required this.title});
+
   final String title;
 
   @override
@@ -18,75 +21,84 @@ class LabPracticesState extends State<LabPractices> {
   @override
   void initState() {
     super.initState();
-    controller.addListener(() {
-      final String text = controller.text;
-      controller.value = controller.value.copyWith(
-        text: text,
-      );
+    data.labPracticesController.addListener(() {
+      data.commentsLabPractices = data.labPracticesController.text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lab Inspection Form"),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //body:
-              Column(
-                children: [
-                  Text("Laboratory Practices", style: TextStyle(fontSize: 25)),
-                  TaskItem(
-                      key: Key('1'),
-                      label: "22. Gloves are work outside the lab"),
-                  TaskItem(
-                      key: Key('2'),
-                      label:
-                          "23. Evidence of personnel eating or drinking in the laboratory"),
-                  TaskItem(
-                      key: Key('3'),
-                      label: "24. Food items stored with hazardous chemicals"),
-                  TaskItem(
-                      key: Key('4'),
-                      label:
-                          "25. Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators"),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Comments(
-                  controller: controller,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lab Inspection Form"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //body:
+                Column(
+                  children: [
+                    Text("Laboratory Practices",
+                        style: TextStyle(fontSize: 25)),
+                    TaskItem(
+                        key: Key('22'),
+                        label: "22. Gloves are work outside the lab"),
+                    TaskItem(
+                        key: Key('23'),
+                        label:
+                            "23. Evidence of personnel eating or drinking in the laboratory"),
+                    TaskItem(
+                        key: Key('24'),
+                        label:
+                            "24. Food items stored with hazardous chemicals"),
+                    TaskItem(
+                        key: Key('25'),
+                        label:
+                            "25. Hazardous chemicals not carried in secondary/spill-proof containers when transported through corridors/elevators"),
+                  ],
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text('Take Photo'),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: UploadPhoto(key: Key('photo lab practices')),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(
-                    key: Key('5'), label: "This page is completed."),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(),
-              ),
-            ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Comments(
+                    key: Key("labpractices"),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Text('Take Photo'),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: UploadPhoto(key: Key('photo lab practices')),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConfirmTask(
+                      key: Key('5'), label: "This page is completed."),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Buttons(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -123,10 +135,8 @@ class NextButton extends StatelessWidget {
             // will work with LabPractices.dart
             context,
             MaterialPageRoute(
-                builder: (context) => const ChemicalUse(
-                      title: "",
-                      key: Key('chemical use'),
-                    )));
+                builder: (context) =>
+                    ChemicalUse(title: "", key: Key('chemical use'))));
       },
       child: Container(
         color: Colors.blue,
