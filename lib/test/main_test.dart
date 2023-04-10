@@ -21,13 +21,13 @@ void main() {
       expect(find.text('General Information'), findsOneWidget);
     });
 
-    // Edit this test once OSHA form is done
-    // testWidgets("OSHA form Button", (WidgetTester tester) async {
-    //   await tester.pumpWidget(createWidgetUnderTest());
-    //   await tester.tap(find.byKey(Key('OSHAForm')));
-    //   await tester.pumpAndSettle();
-    //   expect(find.te, findsOneWidget);
-    // });
+    // For test to work! Change font-size of widget.label for each category to 10. OR this will throw a overflow error.
+     testWidgets("OSHA form Button", (WidgetTester tester) async {
+       await tester.pumpWidget(MyApp());
+       await tester.tap(find.byKey(Key('OSHAForm')));
+       await tester.pumpAndSettle();
+       expect(find.text('OSHA Form'), findsOneWidget);
+     });
 
     testWidgets('send email with no text in fields',
         ((WidgetTester tester) async {
