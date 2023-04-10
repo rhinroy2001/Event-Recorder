@@ -70,26 +70,25 @@ class OSHAState extends State<OSHA> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //body:
               Column(
                 children: [
-                  Group(
+                  Grouping(
                     label: "Tripping Hazards",
                     option1:
                         "1910.22(a)(1) - All places of employment, passageways, storerooms, service rooms, and walking-working surfaces are kept in a clean, orderly, and sanitary condition.",
                     option2:
                         "1910.22(a)(3) - Walking-working surfaces are maintained free of hazards such as sharp or protruding objects, loose boards, corrosion, leaks, spills, snow, and ice.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Falling Objects",
                     option1:
                         "1910.28(c) - Protection from falling objects. When an employee is exposed to falling objects, the employer must ensure that each employee wears head protection that meets the requirements of subpart I of this part. In addition, the employer must protect employees from falling objects.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Broken Equipment",
                     option1:
                         "1910.334(c)(2) - Visual inspection. Test instruments and equipment and all associated test leads, cables, power cords, probes, and connectors shall be visually inspected for external defects and damage before the equipment is used. If there is a defect or evidence of damage that might expose an employee to injury, the defective or damaged item shall be removed from service, and no employee may use it until repairs and tests necessary to render the equipment safe have been made.",
@@ -98,30 +97,30 @@ class OSHAState extends State<OSHA> {
                     option3:
                         "1910.303(b)(7)(iv) - There shall be no damaged parts that may adversely affect safe operation or mechanical strength of the equipment, such as parts that are broken, bent, cut, or deteriorated by corrosion, chemical action, or overheating.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Emergency Exit Route",
                     option1:
                         "1910.37(a)(3) - Exit routes must be free and unobstructed. No materials or equipment may be placed, either permanently or temporarily, within the exit route. The exit access must not go through a room that can be locked, such as a bathroom, to reach an exit or exit discharge, nor may it lead into a dead-end corridor. Stairs or a ramp must be provided where the exit route is not substantially level.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Power Cord Management",
                     option1:
                         "1910.303(b) - Examination, installation, and use of equipment.",
                     option2:
                         "1910.305(a)(2)(x) - Flexible cords and cables shall be protected from accidental damage, as might be caused, for example, by sharp corners, projections, and doorways or other pinch points.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Electrical Panel",
                     option1:
                         "1910.303(g)(1)(i) - Working space for equipment likely to require examination, adjustment, servicing, or maintenance while energized shall comply with the following dimensions, except as required or permitted elsewhere in this subpart.",
                     option2:
                         "1910.305(b)(3)(iii) - Covers for boxes shall be permanently marked \"HIGH VOLTAGE.\" The marking shall be on the outside of the box cover and shall be readily visible and legible.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Safe platform for climbing",
                     option1: "1910.23(c) - Portable ladders.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Correct Labeling",
                     option1:
                         "1910.1450(h)(1)(i) or 1910.1200(b)(3)(i) - Employers shall ensure that labels on incoming containers of hazardous chemicals are not removed or defaced.",
@@ -132,66 +131,66 @@ class OSHAState extends State<OSHA> {
                     option4:
                         "1910.1200(i)(1) - The chemical manufacturer, importer, or employer may withhold the specific chemical identity, including the chemical name, other specific identification of a hazardous chemical, or the exact percentage (concentration) of the substance in a mixture, from the safety data sheet.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Chemical Hygiene Plan",
                     option1: "1910.1450(e) Chemical hygiene plan - General",
                   ),
-                  Group(
+                  Grouping(
                     label: "Training",
                     option1: "1910.132(f) Training. (PPE)",
                     option2:
                         "1910.1450(f)(1) (Chemical Hazards) - The employer shall provide employees with information and training to ensure that they are apprised of the hazards of chemicals present in their work area.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Posting for previous inspection",
                     option1:
                         "1910.132(d)(2) - The employer shall verify that the required workplace hazard assessment has been performed through a written certification that identifies the workplace evaluated; the person certifying that the evaluation has been performed; the date(s) of the hazard assessment; and, which identifies the document as a certification of hazard assessment.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Transporting chemicals",
                     option1:
                         "1910.1030(d)(2)(xiii)(B) - If outside contamination of the primary container occurs, the primary container shall be placed within a second container which prevents leakage during handling, processing, storage, transport, or shipping and is labeled or color-coded according to the requirements of this standard.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Fume Hood",
                     option1:
                         "1910.1450(e)(3)(iii) - A requirement that fume hoods and other protective equipment are functioning properly and specific measures that shall be taken to ensure proper and adequate performance of such equipment.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Eye Wash Station",
+                    option1:
+                        "1910.151(c) - Where the eyes or body of any person may be exposed to injurious corrosive materials, suitable facilities for quick drenching, or flushing of the eyes and body shall be provided within the work area for immediate emergency use.",
+                  ),
+                  Grouping(
+                    label: "Safety Shower",
                     option1:
                         "1910.151(c) - Where the eyes or body of any person may be exposed to injurious corrosive materials, suitable facilities for quick drenching or flushing of the eyes and body shall be provided within the work area for immediate emergency use.",
                   ),
-                  Group(
-                    label: "Safety Shower",
-                    option1:
-                        "1910.151(c)Where the eyes or body of any person may be exposed to injurious corrosive materials, suitable facilities for quick drenching or flushing of the eyes and body shall be provided within the work area for immediate emergency use.",
-                  ),
-                  Group(
+                  Grouping(
                     label: "First Aid Kit",
                     option1:
                         "1910.151(b) - In the absence of an infirmary, clinic, or hospital in near proximity to the workplace which is used for the treatment of all injured employees, a person or persons shall be adequately trained to render first aid. Adequate first aid supplies shall be readily available.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Fire Extinquisher",
                     option1:
                         "1910.157(c)(1) - The employer shall provide portable fire extinguishers and shall mount, locate and identify them so that they are readily accessible to employees without subjecting the employees to possible injury.",
                     option2:
                         "1910.157(e) - Inspection, maintenance, and testing.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Sharps, Broken Glass, and Empty Containers",
                     option1:
                         "1910.1030(d)(2)(viii) - Immediately or as soon as possible after use, contaminated reusable sharps shall be placed in appropriate containers until properly reprocessed.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Respirators",
                     option1:
                         "1910.134(c) - Respiratory protection program. This paragraph requires the employer to develop and implement a written respiratory protection program with required worksite-specific procedures and elements for required respirator use. The program must be administered by a suitably trained program administrator. In addition, certain program elements may be required for voluntary use to prevent potential hazards associated with the use of the respirator. The Small Entity Compliance Guide contains criteria for the selection of a program administrator and a sample program that meets the requirements of this paragraph. Copies of the Small Entity Compliance Guide will be available on or about April 8, 1998 from the Occupational Safety and Health Administration's Office of Publications, Room N 3101, 200 Constitution Avenue, NW, Washington, DC, 20210 (202-219-4667).",
                     option2:
                         "1910.1450(i) - Use of respirators. Where the use of respirators is necessary to maintain exposure below permissible exposure limits, the employer shall provide, at no cost to the employee, the proper respiratory equipment. Respirators shall be selected and used in accordance with the requirements of 29 CFR 1910.134.",
                   ),
-                  Group(
+                  Grouping(
                     label: "Personal Protection Equipment",
                     option1:
                         "1910.132(a) - Application. Protective equipment, including personal protective equipment for eyes, face, head, and extremities, protective clothing, respiratory devices, and protective shields and barriers, shall be provided, used, and maintained in a sanitary and reliable condition wherever it is necessary by reason of hazards of processes or environment, chemical hazards, radiological hazards, or mechanical irritants encountered in a manner capable of causing injury or impairment in the function of any part of the body through absorption, inhalation or physical contact.",
@@ -209,7 +208,7 @@ class OSHAState extends State<OSHA> {
   }
 }
 
-class Group extends StatefulWidget {
+class Grouping extends StatefulWidget {
   final String label;
   final String option1;
   final String option2;
@@ -217,7 +216,7 @@ class Group extends StatefulWidget {
   final String option4;
   // add new parameters here
 
-  Group(
+  Grouping(
       {Key? key,
       required this.label,
       required this.option1,
@@ -228,10 +227,10 @@ class Group extends StatefulWidget {
       : super(key: key);
 
   @override
-  GroupState createState() => GroupState();
+  GroupingState createState() => GroupingState();
 }
 
-class GroupState extends State<Group> {
+class GroupingState extends State<Grouping> {
   bool? value = false;
 
   @override
@@ -242,6 +241,7 @@ class GroupState extends State<Group> {
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
           child: Row(
             children: [
+              // For tests to work, change fontsize to 10 (original size 25)
               Text(widget.label, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               Spacer(),
               NA_CheckBox(),
@@ -299,6 +299,7 @@ class DoneButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      key: Key("Done"),
       onPressed: () {
         Navigator.push(
             context,
@@ -339,26 +340,24 @@ class Comments extends StatefulWidget {
 }
 
 class CommentsState extends State<Comments> {
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
     return Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextField(
-              key: _formKey,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
+      key: Key('CommentBox'),
+      child: Column(
+        children: [
+          TextField(
+            keyboardType: TextInputType.multiline,
+            decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Comments/Explanation",
               ),
-              minLines: 1,
-              maxLines: 6,
-            ),
-          ],
-        ));
+            minLines: 1,
+            maxLines: 6,
+          ),
+        ],
+      )
+    );
   }
 }
