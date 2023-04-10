@@ -35,17 +35,8 @@ class UploadPhotoState extends State<UploadPhoto> {
     var file = File(image!.path);
     String fileName = basename(file.path);
     if (image != null) {
-      var snapshot =
-          await firebaseStorage.ref().child('uploads/$fileName').putFile(file);
-      var downloadUrl = await snapshot.ref.getDownloadURL();
-      Uint8List bytes =
-          (await NetworkAssetBundle(Uri.parse(downloadUrl)).load(downloadUrl))
-              .buffer
-              .asUint8List();
+      Uint8List bytes = await image.readAsBytes();
       data.imageAsBytesList.add(bytes);
-      // setState(() {
-      //   imageUrl = downloadUrl;
-      // });
     }
   }
 

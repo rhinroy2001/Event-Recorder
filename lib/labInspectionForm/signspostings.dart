@@ -8,9 +8,8 @@ import 'package:event_recorder/labInspectionForm/comments.dart';
 import 'data.dart';
 
 class SignsPostings extends StatefulWidget {
-  const SignsPostings({super.key, required this.title, required this.data});
+  const SignsPostings({super.key, required this.title});
   final String title;
-  final Data data;
 
   @override
   State<SignsPostings> createState() => SignsPostingsState();
@@ -97,7 +96,7 @@ class SignsPostingsState extends State<SignsPostings> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Buttons(widget.data),
+                  child: Buttons(),
                 ),
               ],
             ),
@@ -128,8 +127,6 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
-  final Data data;
-  NextButton(this.data);
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -139,8 +136,8 @@ class NextButton extends StatelessWidget {
             // will work with signsPostings.dart
             context,
             MaterialPageRoute(
-                builder: (context) => ChemicalHygiene(
-                    title: "", key: Key('chemical hygiene'), data: data)));
+                builder: (context) =>
+                    ChemicalHygiene(title: "", key: Key('chemical hygiene'))));
       },
       child: Container(
         color: Colors.blue,
@@ -155,8 +152,6 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
-  Buttons(this.data);
-  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -164,7 +159,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(data),
+      NextButton(),
     ]));
   }
 }

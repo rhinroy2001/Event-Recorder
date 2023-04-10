@@ -8,8 +8,8 @@ import 'package:event_recorder/labInspectionForm/comments.dart';
 import 'data.dart';
 
 class LabPractices extends StatefulWidget {
-  const LabPractices({super.key, required this.title, required this.data});
-  final Data data;
+  const LabPractices({super.key, required this.title});
+
   final String title;
 
   @override
@@ -95,7 +95,7 @@ class LabPracticesState extends State<LabPractices> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Buttons(widget.data),
+                  child: Buttons(),
                 ),
               ],
             ),
@@ -126,8 +126,6 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
-  NextButton(this.data);
-  final Data data;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -137,8 +135,8 @@ class NextButton extends StatelessWidget {
             // will work with LabPractices.dart
             context,
             MaterialPageRoute(
-                builder: (context) => ChemicalUse(
-                    title: "", key: Key('chemical use'), data: data)));
+                builder: (context) =>
+                    ChemicalUse(title: "", key: Key('chemical use'))));
       },
       child: Container(
         color: Colors.blue,
@@ -153,8 +151,6 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
-  Buttons(this.data);
-  final Data data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -162,7 +158,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(data),
+      NextButton(),
     ]));
   }
 }

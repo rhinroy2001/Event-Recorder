@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class Data {
   static final Data _data = Data._internal();
-  //List<String> imageUrls = [];
   List<Uint8List> imageAsBytesList = [];
+  Uint8List signature = Uint8List(0);
   TextEditingController fireSafetyController = TextEditingController();
   TextEditingController signsAndPostingsController = TextEditingController();
   TextEditingController chemicalHygieneController = TextEditingController();
@@ -106,13 +106,116 @@ class Data {
   bool fiftytwo = false;
   bool fiftythree = false;
 
-  // Data(this.faculty, this.date, this.room, this.inspector, this.department,
-  //     this.phone);
   factory Data() {
     return _data;
+  }
+
+  reset() {
+    fireSafetyController.text = "";
+    signsAndPostingsController.text = "";
+    chemicalHygieneController.text = "";
+    labPracticesController.text = "";
+    chemicalUseController.text = "";
+    safetyEquipmentController.text = "";
+    hazardousWasteController.text = "";
+    personalProtectionController.text = "";
+    imageAsBytesList = [];
+    signature = Uint8List(0);
+    faculty = "";
+    date = "";
+    room = "";
+    inspector = "";
+    department = "";
+    phone = "";
+    commentsFireSafety = "";
+    commentsSignsAndPostings = "";
+    commentsChemicalHygiene = "";
+    commentsLabPractices = "";
+    commentsChemicalUse = "";
+    commentsSafetyEquipment = "";
+    commentsHazardousWaste = "";
+    commentsPersonalProtection = "";
+    one = false;
+    two = false;
+    three = false;
+    four = false;
+    five = false;
+    six = false;
+    seven = false;
+    eight = false;
+    nine = false;
+    ten = false;
+    eleven = false;
+    twelve = false;
+    thirteen = false;
+    fourteen = false;
+    fifteen = false;
+    sixteen = false;
+    seventeen = false;
+    eighteen = false;
+    eighteenA = false;
+    eighteenB = false;
+    nineteen = false;
+    twenty = false;
+    twentyone = false;
+    twentytwo = false;
+    twentythree = false;
+    twentyfour = false;
+    twentyfive = false;
+    twentysix = false;
+    twentyseven = false;
+    twentyeight = false;
+    twentynine = false;
+    thirty = false;
+    thirtyone = false;
+    thirtytwo = false;
+    thirtythree = false;
+    thirtythreeA = false;
+    thirtythreeB = false;
+    thirtythreeC = false;
+    thirtyfour = false;
+    thirtyfive = false;
+    thirtysix = false;
+    thirtyseven = false;
+    thirtyeight = false;
+    thirtynine = false;
+    forty = false;
+    fortyA = false;
+    fortyB = false;
+    fortyone = false;
+    fortytwo = false;
+    fortythree = false;
+    fortyfour = false;
+    fortyfourA = false;
+    fortyfourB = false;
+    fortyfourC = false;
+    fortyfourD = false;
+    fortyfive = false;
+    fortyfiveA = false;
+    fortyfiveB = false;
+    fortysix = false;
+    fortysixA = false;
+    fortysixB = false;
+    fortysixC = false;
+    fortyseven = false;
+    fortysevenA = false;
+    fortysevenB = false;
+    fortysevenC = false;
+    fortysevenD = false;
+    fortyeight = false;
+    fortyeightA = false;
+    fortyeightB = false;
+    fortyeightC = false;
+    fortynine = false;
+    fortynineA = false;
+    fortynineB = false;
+    fifty = false;
+    fiftyone = false;
+    fiftytwo = false;
+    fiftythree = false;
   }
 
   Data._internal();
 }
 
-final data = Data();
+var data = Data();

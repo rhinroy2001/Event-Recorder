@@ -674,6 +674,14 @@ List<pw.Widget> buildPrintableDataPageOne(Data data, var font) {
             "53. Evidence of open toad shoes (sandals, etc.) worn in the laboratory",
             style: pw.TextStyle(font: font)))
   ]));
+  if (data.signature.isNotEmpty) {
+    widgets.add(pw.Flex(direction: pw.Axis.horizontal, children: [
+      pw.Flexible(
+          fit: pw.FlexFit.loose,
+          child: pw.Text("SIGNED: ", style: pw.TextStyle(font: font))),
+      pw.Image(pw.MemoryImage(data.signature))
+    ]));
+  }
   widgets.add(pw.SizedBox(height: 50));
   widgets.add(pw.Text("COMMENTS:", style: pw.TextStyle(font: font)));
   widgets
@@ -696,10 +704,10 @@ List<pw.Widget> buildPrintableDataPageOne(Data data, var font) {
   widgets.add(pw.Text("PHOTOS", style: pw.TextStyle(font: font)));
   //getImages(data.imageUrls);
   //print(data.imageUrls.length);
-  print(data.imageAsBytesList.length);
-  for (int i = 0; i < data.imageAsBytesList.length; i++) {
-    widgets.add(pw.Image(pw.MemoryImage(data.imageAsBytesList.elementAt(i)),
-        height: 200, width: 200));
+  if (data.imageAsBytesList.isNotEmpty) {
+    for (Uint8List img in data.imageAsBytesList) {
+      widgets.add(pw.Image(pw.MemoryImage(img), height: 200, width: 200));
+    }
   }
   return widgets;
 }

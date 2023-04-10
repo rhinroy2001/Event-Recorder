@@ -69,95 +69,106 @@ class GeneralInfoState extends State<GeneralInfo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Lab Inspection Form"),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child:
-                    Text("General Information", style: TextStyle(fontSize: 25)),
-              ),
-              TextFormField(
-                controller: dateController,
-                key: Key('date'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Date',
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lab Inspection Form"),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text("General Information",
+                      style: TextStyle(fontSize: 25)),
                 ),
-              ),
-              TextFormField(
-                controller: facultyController,
-                key: Key('faculty'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Faculty',
+                TextFormField(
+                  controller: dateController,
+                  key: Key('date'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Date',
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: roomController,
-                key: Key('buildingRoom'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Building Room',
+                TextFormField(
+                  controller: facultyController,
+                  key: Key('faculty'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Faculty',
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: departmentController,
-                key: Key('departmentDivision'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Department Division',
+                TextFormField(
+                  controller: roomController,
+                  key: Key('buildingRoom'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Building Room',
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: inspectorController,
-                key: Key('inspector'),
-                decoration: const InputDecoration(
-                  //labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Inspector',
+                TextFormField(
+                  controller: departmentController,
+                  key: Key('departmentDivision'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Department Division',
+                  ),
                 ),
-              ),
-              TextFormField(
-                controller: phoneController,
-                key: Key('phone'),
-                decoration: const InputDecoration(
-                  // labelStyle: TextStyle(fontSize: 24),
-                  border: UnderlineInputBorder(),
-                  labelText: 'Phone',
+                TextFormField(
+                  controller: inspectorController,
+                  key: Key('inspector'),
+                  decoration: const InputDecoration(
+                    //labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Inspector',
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                child: Text('Take Photo'),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                child: UploadPhoto(),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: ConfirmTask(
-                    key: Key('confirm'), label: "This page is completed."),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Buttons(data),
-              ),
-            ],
+                TextFormField(
+                  controller: phoneController,
+                  key: Key('phone'),
+                  decoration: const InputDecoration(
+                    // labelStyle: TextStyle(fontSize: 24),
+                    border: UnderlineInputBorder(),
+                    labelText: 'Phone',
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                  child: Text('Take Photo'),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  child: UploadPhoto(),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ConfirmTask(
+                      key: Key('confirm'), label: "This page is completed."),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Buttons(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -186,9 +197,6 @@ class BackButton extends StatelessWidget {
 }
 
 class NextButton extends StatelessWidget {
-  NextButton(this.data);
-  final Data data;
-
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -198,8 +206,8 @@ class NextButton extends StatelessWidget {
             // will work with firesafety.dart
             context,
             MaterialPageRoute(
-                builder: (context) => FireSafety(
-                    key: Key('fire safety'), title: "", data: data)));
+                builder: (context) =>
+                    FireSafety(key: Key('fire safety'), title: "")));
       },
       child: Container(
         color: Colors.blue,
@@ -214,9 +222,6 @@ class NextButton extends StatelessWidget {
 }
 
 class Buttons extends StatelessWidget {
-  Buttons(this.data);
-  final Data data;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -224,7 +229,7 @@ class Buttons extends StatelessWidget {
       BackButton(),
       SizedBox(width: 20),
       SizedBox(width: 20),
-      NextButton(data),
+      NextButton(),
     ]));
   }
 }
