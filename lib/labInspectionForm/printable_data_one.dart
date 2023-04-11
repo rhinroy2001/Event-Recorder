@@ -702,8 +702,6 @@ List<pw.Widget> buildPrintableDataPageOne(Data data, var font) {
       style: pw.TextStyle(font: font)));
   widgets.add(pw.SizedBox(height: 50));
   widgets.add(pw.Text("PHOTOS", style: pw.TextStyle(font: font)));
-  //getImages(data.imageUrls);
-  //print(data.imageUrls.length);
   if (data.imageAsBytesList.isNotEmpty) {
     for (Uint8List img in data.imageAsBytesList) {
       widgets.add(pw.Image(pw.MemoryImage(img), height: 200, width: 200));

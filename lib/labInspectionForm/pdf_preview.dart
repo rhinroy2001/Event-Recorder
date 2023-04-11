@@ -28,6 +28,7 @@ class PdfPreviewPage extends StatelessWidget {
       body: PdfPreview(build: (format) => printDoc(data, format)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          data.reset();
           Navigator.push(context,
               MaterialPageRoute(builder: ((context) => MyHomePage(title: ""))));
         },
