@@ -146,16 +146,16 @@ class GeneralInfoState extends State<GeneralInfo> {
                     labelText: 'Phone',
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-                  child: Text('Take Photo'),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                  child: UploadPhoto(),
-                ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+                //   child: Text('Take Photo'),
+                // ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                //   child: UploadPhoto(),
+                // ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
