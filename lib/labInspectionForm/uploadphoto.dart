@@ -23,7 +23,7 @@ class UploadPhotoState extends State<UploadPhoto> {
   // }R
 
   Future<void> _onImageButtonPressed(ImageSource source) async {
-    final firebaseStorage = FirebaseStorage.instance;
+    //final firebaseStorage = FirebaseStorage.instance;
     final ImagePicker picker = ImagePicker();
     XFile? image;
     // await Permission.photos.request();

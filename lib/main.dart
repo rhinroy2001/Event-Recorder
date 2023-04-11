@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               controller: mailToController,
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
-                                labelText: 'Mail to',
+                                labelText: 'someone@example.com',
                               ),
                             ),
                           ),
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
                                 labelText: 'Email body',
-                                hintText: 'someone@example.com',
+                                hintText: 'Enter Text',
                               ),
                             ),
                           ),
